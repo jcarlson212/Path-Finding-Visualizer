@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Cell from './Cell';
+import { isCompositeComponent } from 'react-dom/test-utils';
 
 const CELLS_PER_ROW = 50
 const CELLS_PER_COL = 50
@@ -13,6 +14,9 @@ class App extends React.Component {
       
     ],
     //should_re_render: true,
+    isMouseDown: {
+      mouseDown: false,
+    }
   }
 
   componentDidMount = () => {
@@ -36,16 +40,17 @@ class App extends React.Component {
 
 
   render() {
+    console.log("main render called")
     const grid = []
     let i = 0
     for (i = 0; i < this.state.cells.length; i++) {
       const tempIndex = i
       const cell = this.state.cells[tempIndex]
-      grid.push(<Cell xCoord={cell["xCoord"]} yCoord={cell["yCoord"]} cellColor="white" key={i} />)
+      grid.push(<Cell xCoord={cell["xCoord"]} yCoord={cell["yCoord"]} cellColor="white" key={i} isMouseDown={ this.state.isMouseDown } />)
     }
       
     return (
-      <div className="App">
+      <div className="App" onMouseDown={() => { this.state.isMouseDown.mouseDown = true }} onMouseUp={() => { this.state.isMouseDown.mouseDown = false }} >
         {grid}
       </div>
     );

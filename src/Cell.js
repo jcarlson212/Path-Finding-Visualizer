@@ -30,16 +30,18 @@ export default class Cell extends React.Component {
 
     changeColor = () => {
         console.log("changed color called")
-        if(this.state.cellColor === "white"){
-            this.setState({
-                ...this.state,
-                cellColor: "black"
-            })
-        }else{
-            this.setState({
-                ...this.state,
-                cellColor: "white"
-            })
+        if(this.props.isMouseDown.mouseDown === true) {
+            if(this.state.cellColor === "white"){
+                this.setState({
+                    ...this.state,
+                    cellColor: "black"
+                });
+            }else{
+                this.setState({
+                    ...this.state,
+                    cellColor: "white"
+                });
+            }
         }
     }
 
