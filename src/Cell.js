@@ -4,14 +4,20 @@ const white_grid_square = {
     position: "absolute",
     width: 50,
     height: 50,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    borderWidth: 1,
+    borderColor: 'black',
+    borderStyle: 'solid',
   }
   
   const black_grid_square = {
     position: "absolute",
     width: 50,
     height: 50,
-    backgroundColor: 'black'
+    backgroundColor: 'black',
+    borderWidth: 5,
+    borderColor: 'black',
+    borderStyle: 'solid',
   }
 
 export default class Cell extends React.Component {
