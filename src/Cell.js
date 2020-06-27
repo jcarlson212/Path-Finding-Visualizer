@@ -28,9 +28,9 @@ export default class Cell extends React.Component {
         cellColor: this.props.cellColor
     }
 
-    changeColor = () => {
+    changeColor = (isAClick) => {
         console.log("changed color called")
-        if(this.props.isMouseDown.mouseDown === true) {
+        if(this.props.isMouseDown.mouseDown === true || isAClick) {
             if(this.state.cellColor === "white"){
                 this.setState({
                     ...this.state,
@@ -60,7 +60,7 @@ export default class Cell extends React.Component {
                         left: this.state.xCoord,
                         top: this.state.yCoord,
                     }
-            } onMouseEnter={() => this.changeColor()}>
+            } onMouseEnter={() => this.changeColor(false)} onClick={() => this.changeColor(true)}>
             </div>
         )
     }
