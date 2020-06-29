@@ -1,9 +1,11 @@
 import React from 'react';
 
+export const CELL_WIDTH = 50;
+
 const white_grid_square = {
     position: "absolute",
-    width: 50,
-    height: 50,
+    width: CELL_WIDTH,
+    height: CELL_WIDTH,
     backgroundColor: 'white',
     borderWidth: 1,
     borderColor: 'black',
@@ -12,8 +14,8 @@ const white_grid_square = {
   
   const black_grid_square = {
     position: "absolute",
-    width: 50,
-    height: 50,
+    width: CELL_WIDTH,
+    height: CELL_WIDTH,
     backgroundColor: 'black',
     borderWidth: 5,
     borderColor: 'black',
