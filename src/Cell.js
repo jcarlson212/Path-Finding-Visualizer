@@ -22,12 +22,29 @@ const white_grid_square = {
     borderStyle: 'solid',
   }
 
+  export const green_grid_square = {
+    position: "absolute",
+    width: CELL_WIDTH,
+    height: CELL_WIDTH,
+    backgroundColor: 'green',
+    borderWidth: 5,
+    borderColor: 'black',
+    borderStyle: 'solid',
+  }
+
 export default class Cell extends React.Component {
 
     state = {
         xCoord: this.props.xCoord,
         yCoord: this.props.yCoord,
         cellColor: this.props.cellColor
+    }
+
+    markExplored = () => {
+        this.setState({
+            ...this.state,
+            cellColor: "green",
+        })
     }
 
     changeColor = (isAClick) => {
@@ -56,7 +73,14 @@ export default class Cell extends React.Component {
                         left: this.state.xCoord,
                         top: this.state.yCoord,
                     }
-                :
+                :   
+                    (this.state.color === "green") ?
+                    {
+                        ...green_grid_square,
+                        left: this.state.xCoord,
+                        top: this.state.yCoord,
+                    }
+                    :
                     {
                         ...black_grid_square,
                         left: this.state.xCoord,
