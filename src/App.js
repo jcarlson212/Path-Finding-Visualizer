@@ -1,8 +1,7 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Cell from './Cell';
-import { isCompositeComponent } from 'react-dom/test-utils';
+import { NavigationBar, NAVAGATION_BAR_HEIGHT } from './NavigationBar';
 
 const CELLS_PER_ROW = 50
 const CELLS_PER_COL = 50
@@ -26,7 +25,7 @@ class App extends React.Component {
       for(let j =0; j < CELLS_PER_COL; ++j) {
         initial_cells.push({
           xCoord: 50*i,
-          yCoord: 50*j
+          yCoord: 50*j + NAVAGATION_BAR_HEIGHT,
         })
       }
     }
@@ -50,8 +49,11 @@ class App extends React.Component {
     }
       
     return (
-      <div className="App" onMouseDown={() => { this.state.isMouseDown.mouseDown = true }} onMouseUp={() => { this.state.isMouseDown.mouseDown = false }} >
-        {grid}
+      <div style={{ height: '2600px' }}>
+        <NavigationBar />
+        <div className="App" onMouseDown={() => { this.state.isMouseDown.mouseDown = true }} onMouseUp={() => { this.state.isMouseDown.mouseDown = false }} >
+          {grid}
+        </div>
       </div>
     );
 
