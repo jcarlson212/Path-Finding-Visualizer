@@ -133,15 +133,9 @@ export const breadthFirstSearch = (grid_map, start, end) => {
     }else{
         console.log("queue became empty")
     }
-    
 }
 
 const breadthFirstSearchHelper = (grid_map, q, end, explored) => {
-    let p =0;
-    for(p=0; p < NORMAL*100; p++){
-        let q = 2
-        q = q*2
-    }
     if(!q.isEmpty()) {
         const currentNode = q.pop()
         let x = currentNode[0]+CELL_WIDTH;
