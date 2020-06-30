@@ -1,4 +1,6 @@
 import React from 'react';
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 
 export const NAVAGATION_BAR_HEIGHT = 100
 
@@ -17,9 +19,28 @@ export const NAVAGATION_BAR_HEIGHT = 100
 //7) After all of this (or before doing this) you can also do the animation of the cells changing color
 export class NavigationBar extends React.Component {
     state = {
-
+        location: [
+          {
+            id: 0,
+          title: 'Depth-first Search',
+          selected: false,
+          key: 'location'   
+          },
+          {
+            id: 1,
+            title: 'Breadth-first Search',
+            selected: false,
+            key: 'location'
+          },
+          {
+            id: 2,
+            title: 'Dijkstra',
+            selected: false,
+            key: 'location'
+          }
+        
+        ]
     }
-
 
     render() {
         return (
@@ -28,12 +49,19 @@ export class NavigationBar extends React.Component {
                 height: NAVAGATION_BAR_HEIGHT,
                 backgroundColor: "silver",
             }}>
-                Hello. I am the NavigationBar
-                <p>
-                    gegre
-                </p>
-                <button onClick={() => {console.log("do nothing")}}>Button1</button>
+
+
+                Path Finding Visualizer         
+ 
+
+                <div className="topnav" id="myTopnav">
+                    <a href="#algos" class="active">Algorithms</a>
+                    <Dropdown
+                        title="test"
+                        list={this.state.location}
+                    />
+                </div>
             </div>
         )
-    }
+}
 }
