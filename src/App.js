@@ -21,7 +21,8 @@ class App extends React.Component {
     grid_map: {} //this is for the search algorithms to run on
   }
 
-  componentDidMount = () => {
+  constructor() {
+    super()
     const initial_cells = []
 
     for(let i = 0; i < CELLS_PER_ROW; ++i){
@@ -32,19 +33,27 @@ class App extends React.Component {
         })
       }
     }
-
-    this.setState({
+    this.state = {
       ...this.state,
       cells: initial_cells
-    })
-  }
-  
-  componentWillMount = () => {
-    console.log(this.state.grid_map)
-    //setTimeout(() => {breadthFirstSearch(this.state.grid_map, [100, 100], [500, 500]);}, 15000);
+    };
   }
 
-
+  componentDidMount(){
+    console.log("mounted")
+    setTimeout(() => { 
+      let i= 0
+      for (i = 0; i < this.state.cells.length; i++) {
+        const tempIndex = i
+        const cell = this.state.cells[tempIndex]
+        this.state.grid_map[hashCoord(cell["xCoord"], cell["yCoord"])] = this.refs[hashCoord(cell["xCoord"], cell["yCoord"])]
+      }
+      console.log(this.state.grid_map)
+      setTimeout(() => {
+        breadthFirstSearch(this.state.grid_map, [50, 100], [300, 800])
+      })
+    }, 1000)
+  }
 
   render() {
     console.log("main render called")
@@ -62,18 +71,8 @@ class App extends React.Component {
       }
     }
     this.state.grid_map = grid_map
-    /*
-    setTimeout(() => { 
-      let key
-      for(key in Object.keys(this.state.grid_map)){
-        this.state.grid_map[key] = this.refs[key]
-      }
-      console.log(this.state.grid_map)
-      setTimeout(() => {
-        breadthFirstSearch(this.state.grid_map, [0, 100], [200, 200])
-      })
-    }, 1000)
-    */
+    
+    
     return (
       <div style={{ height: '2600px' }}>
         <NavigationBar />

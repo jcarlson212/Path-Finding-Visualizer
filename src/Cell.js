@@ -41,7 +41,7 @@ export default class Cell extends React.Component {
     }
 
     markExplored = () => {
-        console.log("marked")
+        console.log("marked cell: ", this.state.xCoord, this.state.yCoord)
         this.setState({
             ...this.state,
             cellColor: "green",
@@ -64,7 +64,7 @@ export default class Cell extends React.Component {
             }else{
                 this.setState({
                     ...this.state,
-                    cellColor: "geen"
+                    cellColor: "white"
                 });
             }
         }
@@ -80,7 +80,7 @@ export default class Cell extends React.Component {
                         top: this.state.yCoord,
                     }
                 :   
-                    (this.state.color === "green") ?
+                    (this.state.cellColor === "green") ?
                     {
                         ...green_grid_square,
                         left: this.state.xCoord,
