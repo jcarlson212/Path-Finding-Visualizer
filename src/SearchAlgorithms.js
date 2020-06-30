@@ -34,15 +34,15 @@ export const breadthFirstSearch = (grid_map, start, end) => {
                 //we explore it since it has not been found
                 const newX = x
                 const newY = y
-                q.push([newX, newY]);
-                explored = {
-                    ...explored,
-                    [hashCoord(newX, newY)]: true,
-                }
+                
                 //make some visual effects here later
-                if(grid_map[hashCoord(newX, newY)] !== undefined){
+                if(grid_map[hashCoord(newX, newY)] !== undefined && grid_map[hashCoord(newX, newY)].state.cellColor !== "black"){
                     grid_map[hashCoord(newX, newY)].markExplored()
-                    
+                    q.push([newX, newY]);
+                    explored = {
+                        ...explored,
+                        [hashCoord(newX, newY)]: true,
+                    }
                 }
                 if(newX === end[0] && newY === end[1]){
                     console.log(start, "reached", end)
@@ -60,14 +60,15 @@ export const breadthFirstSearch = (grid_map, start, end) => {
                 //we explore it since it has not been found
                 const newX = x
                 const newY = y
-                q.push([newX, newY]);
-                explored = {
-                    ...explored,
-                    [hashCoord(newX, newY)]: true,
-                }
+                
                 //make some visual effects here later
-                if(grid_map[hashCoord(newX, newY)] !== undefined){
+                if(grid_map[hashCoord(newX, newY)] !== undefined && grid_map[hashCoord(newX, newY)].state.cellColor !== "black"){
                     grid_map[hashCoord(newX, newY)].markExplored()
+                    q.push([newX, newY]);
+                    explored = {
+                        ...explored,
+                        [hashCoord(newX, newY)]: true,
+                    }
                 }
                 if(newX === end[0] && newY === end[1]){
                     console.log(start, "reached", end)
@@ -85,14 +86,15 @@ export const breadthFirstSearch = (grid_map, start, end) => {
                 //we explore it since it has not been found
                 const newX = x
                 const newY = y
-                q.push([newX, newY]);
-                explored = {
-                    ...explored,
-                    [hashCoord(newX, newY)]: true,
-                }
+                
                 //make some visual effects here later
-                if(grid_map[hashCoord(newX, newY)] !== undefined){
+                if(grid_map[hashCoord(newX, newY)] !== undefined && grid_map[hashCoord(newX, newY)].state.cellColor !== "black"){
                     grid_map[hashCoord(newX, newY)].markExplored()
+                    q.push([newX, newY]);
+                    explored = {
+                        ...explored,
+                        [hashCoord(newX, newY)]: true,
+                    }
                 }
                 if(newX === end[0] && newY === end[1]){
                     console.log(start, "reached", end)
@@ -110,14 +112,15 @@ export const breadthFirstSearch = (grid_map, start, end) => {
                 //we explore it since it has not been found
                 const newX = x
                 const newY = y
-                q.push([newX, newY]);
-                explored = {
-                    ...explored,
-                    [hashCoord(newX, newY)]: true,
-                }
+                
                 //make some visual effects here later
-                if(grid_map[hashCoord(newX, newY)] !== undefined){
+                if(grid_map[hashCoord(newX, newY)] !== undefined && grid_map[hashCoord(newX, newY)].state.cellColor !== "black"){
                     grid_map[hashCoord(newX, newY)].markExplored()
+                    q.push([newX, newY]);
+                    explored = {
+                        ...explored,
+                        [hashCoord(newX, newY)]: true,
+                    }
                 }
                 if(newX === end[0] && newY === end[1]){
                     console.log(start, "reached", end)
@@ -148,15 +151,15 @@ const breadthFirstSearchHelper = (grid_map, q, end, explored) => {
                 //we explore it since it has not been found
                 const newX = x
                 const newY = y
-                q.push([newX, newY]);
-                explored = {
-                    ...explored,
-                    [hashCoord(newX, newY)]: true,
-                }
+                
                 //make some visual effects here later
-                if(grid_map[hashCoord(newX, newY)] !== undefined){
+                if(grid_map[hashCoord(newX, newY)] !== undefined && grid_map[hashCoord(newX, newY)].state.cellColor !== "black"){
                     grid_map[hashCoord(newX, newY)].markExplored()
-                    
+                    q.push([newX, newY]);
+                    explored = {
+                        ...explored,
+                        [hashCoord(newX, newY)]: true,
+                    }
                 }
                 if(newX === end[0] && newY === end[1]){
                     console.log("reached", end)
@@ -174,14 +177,15 @@ const breadthFirstSearchHelper = (grid_map, q, end, explored) => {
                 //we explore it since it has not been found
                 const newX = x
                 const newY = y
-                q.push([newX, newY]);
-                explored = {
-                    ...explored,
-                    [hashCoord(newX, newY)]: true,
-                }
+                
                 //make some visual effects here later
-                if(grid_map[hashCoord(newX, newY)] !== undefined){
+                if(grid_map[hashCoord(newX, newY)] !== undefined && grid_map[hashCoord(newX, newY)].state.cellColor !== "black"){
                     grid_map[hashCoord(newX, newY)].markExplored()
+                    q.push([newX, newY]);
+                    explored = {
+                        ...explored,
+                        [hashCoord(newX, newY)]: true,
+                    }
                 }
                 if(newX === end[0] && newY === end[1]){
                     console.log("reached", end)
@@ -199,14 +203,15 @@ const breadthFirstSearchHelper = (grid_map, q, end, explored) => {
                 //we explore it since it has not been found
                 const newX = x
                 const newY = y
-                q.push([newX, newY]);
-                explored = {
-                    ...explored,
-                    [hashCoord(newX, newY)]: true,
-                }
+                
                 //make some visual effects here later
-                if(grid_map[hashCoord(newX, newY)] !== undefined){
+                if(grid_map[hashCoord(newX, newY)] !== undefined && grid_map[hashCoord(newX, newY)].state.cellColor !== "black"){
                     grid_map[hashCoord(newX, newY)].markExplored()
+                    q.push([newX, newY]);
+                    explored = {
+                        ...explored,
+                        [hashCoord(newX, newY)]: true,
+                    }
                 }
                 if(newX === end[0] && newY === end[1]){
                     console.log("reached", end)
@@ -224,14 +229,15 @@ const breadthFirstSearchHelper = (grid_map, q, end, explored) => {
                 //we explore it since it has not been found
                 const newX = x
                 const newY = y
-                q.push([newX, newY]);
-                explored = {
-                    ...explored,
-                    [hashCoord(newX, newY)]: true,
-                }
+                
                 //make some visual effects here later
-                if(grid_map[hashCoord(newX, newY)] !== undefined){
+                if(grid_map[hashCoord(newX, newY)] !== undefined && grid_map[hashCoord(newX, newY)].state.cellColor !== "black"){
                     grid_map[hashCoord(newX, newY)].markExplored()
+                    q.push([newX, newY]);
+                    explored = {
+                        ...explored,
+                        [hashCoord(newX, newY)]: true,
+                    }
                 }
                 if(newX === end[0] && newY === end[1]){
                     console.log("reached", end)
