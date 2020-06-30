@@ -41,18 +41,16 @@ class App extends React.Component {
 
   componentDidMount(){
     console.log("mounted")
-    setTimeout(() => { 
-      let i= 0
-      for (i = 0; i < this.state.cells.length; i++) {
-        const tempIndex = i
-        const cell = this.state.cells[tempIndex]
-        this.state.grid_map[hashCoord(cell["xCoord"], cell["yCoord"])] = this.refs[hashCoord(cell["xCoord"], cell["yCoord"])]
-      }
-      console.log(this.state.grid_map)
-      setTimeout(() => {
-        breadthFirstSearch(this.state.grid_map, [50, 100], [300, 800])
-      })
-    }, 1000)
+    let i= 0
+    for (i = 0; i < this.state.cells.length; i++) {
+      const tempIndex = i
+      const cell = this.state.cells[tempIndex]
+      this.state.grid_map[hashCoord(cell["xCoord"], cell["yCoord"])] = this.refs[hashCoord(cell["xCoord"], cell["yCoord"])]
+    }
+    console.log(this.state.grid_map)
+    
+    breadthFirstSearch(this.state.grid_map, [50, 100], [300, 800])
+     
   }
 
   render() {

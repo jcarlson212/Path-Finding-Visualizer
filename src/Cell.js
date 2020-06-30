@@ -40,16 +40,14 @@ export default class Cell extends React.Component {
         cellColor: this.props.cellColor
     }
 
-    markExplored = () => {
-        console.log("marked cell: ", this.state.xCoord, this.state.yCoord)
-        this.setState({
+    markExplored = async () => {
+        await this.setState({
             ...this.state,
             cellColor: "green",
         })
     }
 
     changeColor = (isAClick) => {
-        console.log("changed color called")
         if(this.props.isMouseDown.mouseDown === true || isAClick) {
             if(this.state.cellColor === "white"){
                 this.setState({
