@@ -41,6 +41,7 @@ export default class Cell extends React.Component {
     }
 
     markExplored = () => {
+        console.log("marked")
         this.setState({
             ...this.state,
             cellColor: "green",
@@ -55,10 +56,15 @@ export default class Cell extends React.Component {
                     ...this.state,
                     cellColor: "black"
                 });
-            }else{
+            }else if(this.state.cellColor === "black"){
                 this.setState({
                     ...this.state,
                     cellColor: "white"
+                });
+            }else{
+                this.setState({
+                    ...this.state,
+                    cellColor: "geen"
                 });
             }
         }

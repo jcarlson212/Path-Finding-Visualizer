@@ -1,4 +1,3 @@
-import React from 'react';
 import { hashCoord } from './GridHelperFunctions';
 import { Queue } from './DataStructures';
 import { CELL_WIDTH } from './Cell';
@@ -9,6 +8,7 @@ export const breadthFirstSearch = (grid_map, start, end) => {
     //start is a starting cell coordinate (x,y)
     //end is a ending cell coordinate (x,y)
     //updates colors of cells manually as it explores them
+    console.log(grid_map)
     let q = new Queue();
     q.push(start)
     if(start === end) {
@@ -18,73 +18,92 @@ export const breadthFirstSearch = (grid_map, start, end) => {
     explored[hashCoord(start[0], start[1])] = true
     while(!q.isEmpty()) {
         const currentNode = q.pop()
-        if(grid_map[hashCoord(currentNode[0]+CELL_WIDTH, currentNode[1])] !== undefined){
+        let x = currentNode[0]+CELL_WIDTH;
+        let y = currentNode[1];
+        if(hashCoord(x, y) in grid_map){
             //it exists
             //check if it has been explored
-            if(explored[hashCoord(currentNode[0]+CELL_WIDTH, currentNode[1])] === undefined){
+            if(!(hashCoord(x, y) in explored)){
                 //we explore it since it has not been found
-                q.push((currentNode[0]+CELL_WIDTH, currentNode[1]));
+                q.push((x, y));
                 explored = {
                     ...explored,
-                    [hashCoord(currentNode[0]+CELL_WIDTH, currentNode[1])]: true,
+                    [hashCoord(x, y)]: true,
                 }
                 //make some visual effects here later
-
-                if((currentNode[0]+CELL_WIDTH, currentNode[1]) === end){
+                console.log(grid_map[hashCoord(x, y)])
+                if(grid_map[hashCoord(x, y)].ref.current !== null){
+                    grid_map[hashCoord(x, y)].ref.current.markExplored()
+                }
+                if((x, y) === end){
+                    return;
+                }
+            }
+        }
+        x = currentNode[0]-CELL_WIDTH;
+        y = currentNode[1];
+        if(hashCoord(x, y) in grid_map){
+            //it exists
+            //check if it has been explored
+            if(!(hashCoord(x, y) in explored)){
+                //we explore it since it has not been found
+                q.push((x, y));
+                explored = {
+                    ...explored,
+                    [hashCoord(x, y)]: true,
+                }
+                //make some visual effects here later
+                console.log(grid_map[hashCoord(x, y)])
+                if(grid_map[hashCoord(x, y)].ref.current !== null){
+                    grid_map[hashCoord(x, y)].ref.current.markExplored()
+                }
+                if((x, y) === end){
                     return;
                 }
             }
         }
 
-        if(grid_map[hashCoord(currentNode[0]-CELL_WIDTH, currentNode[1])] !== undefined){
+        x = currentNode[0];
+        y = currentNode[1]+CELL_WIDTH;
+        if(hashCoord(x, y) in grid_map){
             //it exists
             //check if it has been explored
-            if(explored[hashCoord(currentNode[0]-CELL_WIDTH, currentNode[1])] === undefined){
+            if(!(hashCoord(x, y) in explored)){
                 //we explore it since it has not been found
-                q.push((currentNode[0]-CELL_WIDTH, currentNode[1]));
+                q.push((x, y));
                 explored = {
                     ...explored,
-                    [hashCoord(currentNode[0]-CELL_WIDTH, currentNode[1])]: true,
+                    [hashCoord(x, y)]: true,
                 }
                 //make some visual effects here later
-
-                if((currentNode[0]-CELL_WIDTH, currentNode[1]) === end){
+                console.log(grid_map[hashCoord(x, y)])
+                if(grid_map[hashCoord(x, y)].ref.current !== null){
+                    grid_map[hashCoord(x, y)].ref.current.markExplored()
+                }
+                if((x, y) === end){
                     return;
                 }
             }
         }
 
-        if(grid_map[hashCoord(currentNode[0], currentNode[1]+CELL_WIDTH)] !== undefined){
+        x = currentNode[0];
+        y = currentNode[1]-CELL_WIDTH;
+        if(hashCoord(x, y) in grid_map){
             //it exists
             //check if it has been explored
-            if(explored[hashCoord(currentNode[0], currentNode[1]+CELL_WIDTH)] === undefined){
+            if(!(hashCoord(x, y) in explored)){
                 //we explore it since it has not been found
-                q.push((currentNode[0], currentNode[1]+CELL_WIDTH));
+                q.push((x, y));
                 explored = {
                     ...explored,
-                    [hashCoord(currentNode[0], currentNode[1]+CELL_WIDTH)]: true,
+                    [hashCoord(x, y)]: true,
                 }
                 //make some visual effects here later
-
-                if((currentNode[0], currentNode[1]+CELL_WIDTH) === end){
-                    return;
+                console.log(grid_map[hashCoord(x, y)])
+                if(grid_map[hashCoord(x, y)].ref.current !== null){
+                    grid_map[hashCoord(x, y)].ref.current.markExplored()
                 }
-            }
-        }
-
-        if(grid_map[hashCoord(currentNode[0], currentNode[1]-CELL_WIDTH)] !== undefined){
-            //it exists
-            //check if it has been explored
-            if(explored[hashCoord(currentNode[0], currentNode[1]-CELL_WIDTH)] === undefined){
-                //we explore it since it has not been found
-                q.push((currentNode[0], currentNode[1]-CELL_WIDTH));
-                explored = {
-                    ...explored,
-                    [hashCoord(currentNode[0], currentNode[1]-CELL_WIDTH)]: true,
-                }
-                //make some visual effects here later
-
-                if((currentNode[0], currentNode[1]-CELL_WIDTH) === end){
+                if((x, y) === end){
                     return;
                 }
             }

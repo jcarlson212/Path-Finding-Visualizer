@@ -3,6 +3,7 @@ import './App.css';
 import Cell from './Cell';
 import { NavigationBar, NAVAGATION_BAR_HEIGHT } from './NavigationBar';
 import { hashCoord } from './GridHelperFunctions';
+import { breadthFirstSearch } from './SearchAlgorithms';
 
 const CELLS_PER_ROW = 50
 const CELLS_PER_COL = 50
@@ -38,6 +39,10 @@ class App extends React.Component {
     })
   }
 
+  componentWillMount = () => {
+    //setTimeout(() => {breadthFirstSearch(this.state.grid_map, [100, 100], [500, 500]);}, 15000);
+  }
+
 
 
   render() {
@@ -48,14 +53,15 @@ class App extends React.Component {
     for (i = 0; i < this.state.cells.length; i++) {
       const tempIndex = i
       const cell = this.state.cells[tempIndex]
-      let newCell = <Cell xCoord={cell["xCoord"]} yCoord={cell["yCoord"]} cellColor="white" key={i} isMouseDown={ this.state.isMouseDown } />
+      const refToCell = React.createRef()
+      let newCell = <Cell xCoord={cell["xCoord"]} yCoord={cell["yCoord"]} cellColor="white" key={i} isMouseDown={ this.state.isMouseDown } ref={refToCell} />
       grid.push(newCell)
       grid_map = {
         ...grid_map,
-        [hashCoord(cell["xCoord"], cell["yCoord"])]: newCell
+        [hashCoord(cell["xCoord"], cell["yCoord"])]: { ref: refToCell }
       }
     }
-    this.state.grid_map = grid_map 
+    this.state.grid_map = grid_map
     return (
       <div style={{ height: '2600px' }}>
         <NavigationBar />
