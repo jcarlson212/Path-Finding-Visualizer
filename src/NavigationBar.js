@@ -1,6 +1,22 @@
 import React from 'react';
-import ReactDOM from "react-dom";
+import ReactDOM from 'react-dom';
+import startnode from "./images/startnode.png";
+import endnode from "./images/endnode.png";
+
 export const NAVAGATION_BAR_HEIGHT = 100
+export class NavigationBar extends React.Component {state={
+    isDragging: false,
+
+    originalX: 0,
+    originalY: 0,
+
+    translateX: 0,
+    translateY: 0,
+
+    lastTranslateX: 0,
+    lastTranslateY: 0
+
+}
 
 //There needs to be 
 //1) A drop down list of algorithms
@@ -16,43 +32,50 @@ export const NAVAGATION_BAR_HEIGHT = 100
 //6) similar a red node (a red dot)
 //7) After all of this (or before doing this) you can also do the animation of the cells changing color
 
-export class NavigationBar extends React.Component {
-    state={}
 
-    constructor(props) {
-        super(props);
-        this.state = {value: 'algorithm'};
-        this.handleChange = this.handleChange.bind(this);
-    }
+constructor(props) {
+    super(props);
+    this.state = {value: 'algorithm'};
 
-    handleChange(event) {
-        this.setState({value: event.target.value});
-    }
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
 
  
-    render(){
-        return(
-            <div style={{ 
-                width: '100%', 
-                height: NAVAGATION_BAR_HEIGHT,
-                backgroundColor: "silver",
-            }}>
-                <p>Path Finding Visuslizer</p>
-                <select value={this.state.value} onChange={this.handleChange}>
-                    <option value="Algorithm">Algorithm</option>
-                    <option value="Dijkstra's Algorithm">Dijkstra's Algorithm</option>
-                    <option value="DFS">DFS</option>
-                    <option value="BFS">BFS</option>
-                </select>
-                <select>
-                    <option value="Speed">Speed</option>
-                    <option value="Slow">Slow</option>
-                    <option value="Medium">Medium</option>
-                    <option value="Fast">Fast</option>
-                </select>
-                <button onClick={() => {console.log("do nothing")}}>Run</button>
-                <button onClick={() => {console.log("do nothing")}}>Clear Board</button>
-            </div>
-        );
+render(){
+    return(
+        <div style={{ 
+            width: '213%', 
+            height: NAVAGATION_BAR_HEIGHT,
+            backgroundColor: "silver",
+        }}>
+
+       <p style={{color: "blue"}}>Path Finding Visuslizer </p>
+       
+       <select value={this.state.value} onChange={this.handleChange}>
+  <option value="Algorithm">Algorithm</option>
+  <option value="Dijkstra's Algorithm">Dijkstra's Algorithm</option>
+  <option value="DFS">DFS</option>
+  <option value="BFS">BFS</option>
+</select>
+      
+<select>
+<option value="Speed">Speed</option>
+  <option value="Slow">Slow</option>
+  <option value="Medium">Medium</option>
+  <option value="Fast">Fast</option>
+</select>
+
+Drag to starting position:<img alt="startnode" className="startnode" src={startnode} width="40" height="30"/>
+Drag to ending position:<img alt="endnode" className="endnode" src={endnode} width="45" height="35"/>
+
+<button onClick={() => {console.log("do nothing")}}>Run</button>
+<button onClick={() => {console.log("do nothing")}}>Clear Board</button>
+
+</div>
+    );
     }
 }
