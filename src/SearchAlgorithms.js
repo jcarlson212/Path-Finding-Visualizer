@@ -32,8 +32,8 @@ export const breadthFirstSearch = (grid_map, start, end) => {
                 }
                 //make some visual effects here later
                 console.log(grid_map[hashCoord(x, y)])
-                if(grid_map[hashCoord(x, y)].ref.current !== null){
-                    grid_map[hashCoord(x, y)].ref.current.markExplored()
+                if(grid_map[hashCoord(x, y)] !== undefined){
+                    grid_map[hashCoord(x, y)].markExplored()
                 }
                 if((x, y) === end){
                     return;
@@ -54,8 +54,8 @@ export const breadthFirstSearch = (grid_map, start, end) => {
                 }
                 //make some visual effects here later
                 console.log(grid_map[hashCoord(x, y)])
-                if(grid_map[hashCoord(x, y)].ref.current !== null){
-                    grid_map[hashCoord(x, y)].ref.current.markExplored()
+                if(grid_map[hashCoord(x, y)] !== undefined){
+                    grid_map[hashCoord(x, y)].markExplored()
                 }
                 if((x, y) === end){
                     return;
@@ -77,8 +77,8 @@ export const breadthFirstSearch = (grid_map, start, end) => {
                 }
                 //make some visual effects here later
                 console.log(grid_map[hashCoord(x, y)])
-                if(grid_map[hashCoord(x, y)].ref.current !== null){
-                    grid_map[hashCoord(x, y)].ref.current.markExplored()
+                if(grid_map[hashCoord(x, y)] !== undefined){
+                    grid_map[hashCoord(x, y)].markExplored()
                 }
                 if((x, y) === end){
                     return;
@@ -100,8 +100,8 @@ export const breadthFirstSearch = (grid_map, start, end) => {
                 }
                 //make some visual effects here later
                 console.log(grid_map[hashCoord(x, y)])
-                if(grid_map[hashCoord(x, y)].ref.current !== null){
-                    grid_map[hashCoord(x, y)].ref.current.markExplored()
+                if(grid_map[hashCoord(x, y)] !== undefined){
+                    grid_map[hashCoord(x, y)].markExplored()
                 }
                 if((x, y) === end){
                     return;

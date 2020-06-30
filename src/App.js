@@ -38,8 +38,9 @@ class App extends React.Component {
       cells: initial_cells
     })
   }
-
+  
   componentWillMount = () => {
+    console.log(this.state.grid_map)
     //setTimeout(() => {breadthFirstSearch(this.state.grid_map, [100, 100], [500, 500]);}, 15000);
   }
 
@@ -53,15 +54,26 @@ class App extends React.Component {
     for (i = 0; i < this.state.cells.length; i++) {
       const tempIndex = i
       const cell = this.state.cells[tempIndex]
-      const refToCell = React.createRef()
-      let newCell = <Cell xCoord={cell["xCoord"]} yCoord={cell["yCoord"]} cellColor="white" key={i} isMouseDown={ this.state.isMouseDown } ref={refToCell} />
+      let newCell = <Cell xCoord={cell["xCoord"]} yCoord={cell["yCoord"]} cellColor="white" key={i} isMouseDown={ this.state.isMouseDown } ref={hashCoord(cell["xCoord"], cell["yCoord"])} />
       grid.push(newCell)
       grid_map = {
         ...grid_map,
-        [hashCoord(cell["xCoord"], cell["yCoord"])]: { ref: refToCell }
+        [hashCoord(cell["xCoord"], cell["yCoord"])]: [hashCoord(cell["xCoord"], cell["yCoord"])]
       }
     }
     this.state.grid_map = grid_map
+    /*
+    setTimeout(() => { 
+      let key
+      for(key in Object.keys(this.state.grid_map)){
+        this.state.grid_map[key] = this.refs[key]
+      }
+      console.log(this.state.grid_map)
+      setTimeout(() => {
+        breadthFirstSearch(this.state.grid_map, [0, 100], [200, 200])
+      })
+    }, 1000)
+    */
     return (
       <div style={{ height: '2600px' }}>
         <NavigationBar />

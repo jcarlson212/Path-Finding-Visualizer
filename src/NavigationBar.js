@@ -1,7 +1,5 @@
 import React from 'react';
-import Dropdown from 'react-dropdown';
-import 'react-dropdown/style.css';
-
+import ReactDOM from "react-dom";
 export const NAVAGATION_BAR_HEIGHT = 100
 
 //There needs to be 
@@ -17,51 +15,44 @@ export const NAVAGATION_BAR_HEIGHT = 100
 // can do nothing at the moment. I am thinking like a green dot in the middle of a 50x50 square
 //6) similar a red node (a red dot)
 //7) After all of this (or before doing this) you can also do the animation of the cells changing color
+
 export class NavigationBar extends React.Component {
-    state = {
-        location: [
-          {
-            id: 0,
-          title: 'Depth-first Search',
-          selected: false,
-          key: 'location'   
-          },
-          {
-            id: 1,
-            title: 'Breadth-first Search',
-            selected: false,
-            key: 'location'
-          },
-          {
-            id: 2,
-            title: 'Dijkstra',
-            selected: false,
-            key: 'location'
-          }
-        
-        ]
+    state={}
+
+    constructor(props) {
+        super(props);
+        this.state = {value: 'algorithm'};
+        this.handleChange = this.handleChange.bind(this);
     }
 
-    render() {
-        return (
+    handleChange(event) {
+        this.setState({value: event.target.value});
+    }
+
+ 
+    render(){
+        return(
             <div style={{ 
                 width: '100%', 
                 height: NAVAGATION_BAR_HEIGHT,
                 backgroundColor: "silver",
             }}>
-
-
-                Path Finding Visualizer         
- 
-
-                <div className="topnav" id="myTopnav">
-                    <a href="#algos" class="active">Algorithms</a>
-                    <Dropdown
-                        title="test"
-                        list={this.state.location}
-                    />
-                </div>
+                <p>Path Finding Visuslizer</p>
+                <select value={this.state.value} onChange={this.handleChange}>
+                    <option value="Algorithm">Algorithm</option>
+                    <option value="Dijkstra's Algorithm">Dijkstra's Algorithm</option>
+                    <option value="DFS">DFS</option>
+                    <option value="BFS">BFS</option>
+                </select>
+                <select>
+                    <option value="Speed">Speed</option>
+                    <option value="Slow">Slow</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Fast">Fast</option>
+                </select>
+                <button onClick={() => {console.log("do nothing")}}>Run</button>
+                <button onClick={() => {console.log("do nothing")}}>Clear Board</button>
             </div>
-        )
-}
+        );
+    }
 }
