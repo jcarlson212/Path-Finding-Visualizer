@@ -34,10 +34,19 @@ const white_grid_square = {
 
 export default class Cell extends React.Component {
 
+
     state = {
         xCoord: this.props.xCoord,
         yCoord: this.props.yCoord,
         cellColor: this.props.cellColor
+    }
+
+    clear = ()=>{
+        this.setState({
+            cellColor:"white",
+            xCoord: this.state.xCoord,
+            yCoord: this.state.yCoord,
+        })
     }
 
     markExplored = async () => {
