@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import startnode from "./images/startnode.png";
 import endnode from "./images/endnode.png";
-import {CELLS_PER_ROW,CELLS_PER_COL} from "./App";
-import {hashCoord} from "./GridHelperFunctions";
-export const NAVAGATION_BAR_HEIGHT = 100;
+import { CELLS_PER_ROW, CELLS_PER_COL } from "./App";
+import { hashCoord } from "./GridHelperFunctions";
+import { breadthFirstSearch } from "./SearchAlgorithms";
 
 //There needs to be 
 //1) A drop down list of algorithms
@@ -19,6 +19,7 @@ export const NAVAGATION_BAR_HEIGHT = 100;
 // can do nothing at the moment. I am thinking like a green dot in the middle of a 50x50 square
 //6) similar a red node (a red dot)
 //7) After all of this (or before doing this) you can also do the animation of the cells changing color
+export const NAVAGATION_BAR_HEIGHT = 100;
 
 export class NavigationBar extends React.Component {state={
     isDragging: false,
@@ -59,6 +60,10 @@ export class NavigationBar extends React.Component {state={
                 }           
             }
         }
+
+        run = () => {
+            breadthFirstSearch(this.props.grid_map.refs, [200, 100], [300, 800])
+        }
             
         render() {
             return(
@@ -86,7 +91,7 @@ export class NavigationBar extends React.Component {state={
             Drag to starting position:<img alt="startnode" className="startnode" src={startnode} width="40" height="30"/>
             Drag to ending position:<img alt="endnode" className="endnode" src={endnode} width="45" height="35"/>
 
-            <button onClick={() => {console.log("do nothing")}}>Run</button>
+            <button onClick={() => { this.run() } }>Run</button>
             <button onClick={() => {this.clearBoard()}}>Clear Board</button>
             
 

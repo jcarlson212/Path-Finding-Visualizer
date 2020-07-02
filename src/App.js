@@ -53,7 +53,7 @@ class App extends React.Component {
       
     }
     this.state.grid_map_to_pass_down.refs = this.state.grid_map
-    breadthFirstSearch(this.state.grid_map, [50, 100], [300, 800])
+    //breadthFirstSearch(this.state.grid_map, [50, 100], [300, 800])
      
   }
 
