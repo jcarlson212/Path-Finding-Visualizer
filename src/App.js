@@ -11,21 +11,22 @@ export const CELLS_PER_COL = 50;
 class App extends React.Component {
 
   state = {
-    cells: [
+    cells: [//this is just the positions of the cells
       
     ],
     //should_re_render: true,
-    isMouseDown: {
+    isMouseDown: {//This is passed to children. It handles the mousedown stuff for all of them. This avoids constant re-rendering.
       mouseDown: false,
     },
     grid_map: {}, //this is for the search algorithms to run on
-    grid_map_to_pass_down: { 
-      refs: {
+    grid_map_to_pass_down: { //This is what gets passed to children (like nav bar) to initially run the search algorithms
+      refs: {//every ref has a key which maps it to an actual cell class.
 
       },
     },
   }
 
+  //Defines the coordinates of where cells will eventually be rendered / placed when initialized
   constructor() {
     super()
     const initial_cells = []
@@ -44,6 +45,8 @@ class App extends React.Component {
     };
   }
 
+  //Here we get refs to all of the cells so that we can change their color and mark them with
+  //our search algorithms
   componentDidMount(){
     let i= 0
     for (i = 0; i < this.state.cells.length; i++) {
@@ -53,10 +56,9 @@ class App extends React.Component {
       
     }
     this.state.grid_map_to_pass_down.refs = this.state.grid_map
-    //breadthFirstSearch(this.state.grid_map, [50, 100], [300, 800])
-     
   }
 
+  //renders a Navigation bar and a grid of cells.
   render() {
     console.log("main render called")
     const grid = []
@@ -69,7 +71,7 @@ class App extends React.Component {
       grid.push(newCell)
       grid_map = {
         ...grid_map,
-        [hashCoord(cell["xCoord"], cell["yCoord"])]: this.refs[hashCoord(cell["xCoord"], cell["yCoord"])]
+        [hashCoord(cell["xCoord"], cell["yCoord"])]: this.refs[hashCoord(cell["xCoord"], cell["yCoord"])] //initially, these refs are null (have to be mounted for some reason)
       }
     }
     this.state.grid_map = grid_map

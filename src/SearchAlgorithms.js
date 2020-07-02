@@ -254,3 +254,11 @@ const breadthFirstSearchHelper = (grid_map, q, end, explored, speed) => {
     }
     
 }
+
+// To be completed. Should be the same as breadth first search
+// except uses a stack instead of a queue. The stack does not have 
+// a front() function - instead it uses peak.
+export const depthFirstSearch = (grid_map, start, end, speed) => {
+
+
+}
