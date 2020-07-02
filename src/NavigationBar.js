@@ -45,7 +45,6 @@ export class NavigationBar extends React.Component {state={
         }
 
         clearBoard=()=>{
-            console.log(this.props.grid_map)
             for(let i = 0; i < CELLS_PER_ROW; ++i){
                 for(let j =0; j < CELLS_PER_COL; ++j) {
                 
@@ -53,7 +52,7 @@ export class NavigationBar extends React.Component {state={
                     let yCoord= 50*j + NAVAGATION_BAR_HEIGHT
                     if (this.props.grid_map.refs[hashCoord(xCoord,yCoord)] !== undefined)
                     {
-                    this.props.grid_map.refs[hashCoord(xCoord,yCoord)].clear()
+                        this.props.grid_map.refs[hashCoord(xCoord,yCoord)].clear()
                     }
 
                     
