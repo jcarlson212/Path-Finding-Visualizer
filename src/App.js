@@ -5,8 +5,8 @@ import { NavigationBar, NAVAGATION_BAR_HEIGHT } from './NavigationBar';
 import { hashCoord } from './GridHelperFunctions';
 import { breadthFirstSearch } from './SearchAlgorithms';
 
-const CELLS_PER_ROW = 50
-const CELLS_PER_COL = 50
+export const CELLS_PER_ROW = 50;
+export const CELLS_PER_COL = 50;
 
 class App extends React.Component {
 
@@ -46,6 +46,7 @@ class App extends React.Component {
       const tempIndex = i
       const cell = this.state.cells[tempIndex]
       this.state.grid_map[hashCoord(cell["xCoord"], cell["yCoord"])] = this.refs[hashCoord(cell["xCoord"], cell["yCoord"])]
+    
     }
     console.log(this.state.grid_map)
     
@@ -73,7 +74,7 @@ class App extends React.Component {
     
     return (
       <div style={{ height: '2600px' }}>
-        <NavigationBar />
+        <NavigationBar  grid_map= {this.state.grid_map} />
         <div className="App" onMouseDown={() => { this.state.isMouseDown.mouseDown = true }} onMouseUp={() => { this.state.isMouseDown.mouseDown = false }} >
           {grid}
         </div>
