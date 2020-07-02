@@ -18,7 +18,12 @@ class App extends React.Component {
     isMouseDown: {
       mouseDown: false,
     },
-    grid_map: {} //this is for the search algorithms to run on
+    grid_map: {}, //this is for the search algorithms to run on
+    grid_map_to_pass_down: { 
+      refs: {
+
+      },
+    },
   }
 
   constructor() {
@@ -40,16 +45,14 @@ class App extends React.Component {
   }
 
   componentDidMount(){
-    console.log("mounted")
     let i= 0
     for (i = 0; i < this.state.cells.length; i++) {
       const tempIndex = i
       const cell = this.state.cells[tempIndex]
       this.state.grid_map[hashCoord(cell["xCoord"], cell["yCoord"])] = this.refs[hashCoord(cell["xCoord"], cell["yCoord"])]
-    
+      
     }
-    console.log(this.state.grid_map)
-    
+    this.state.grid_map_to_pass_down.refs = this.state.grid_map
     breadthFirstSearch(this.state.grid_map, [50, 100], [300, 800])
      
   }
@@ -66,15 +69,15 @@ class App extends React.Component {
       grid.push(newCell)
       grid_map = {
         ...grid_map,
-        [hashCoord(cell["xCoord"], cell["yCoord"])]: [hashCoord(cell["xCoord"], cell["yCoord"])]
+        [hashCoord(cell["xCoord"], cell["yCoord"])]: this.refs[hashCoord(cell["xCoord"], cell["yCoord"])]
       }
     }
     this.state.grid_map = grid_map
-    
-    
+    this.state.grid_map_to_pass_down.refs = this.state.grid_map
+
     return (
       <div style={{ height: '2600px' }}>
-        <NavigationBar  grid_map= {this.state.grid_map} />
+        <NavigationBar  grid_map={this.state.grid_map_to_pass_down} />
         <div className="App" onMouseDown={() => { this.state.isMouseDown.mouseDown = true }} onMouseUp={() => { this.state.isMouseDown.mouseDown = false }} >
           {grid}
         </div>
