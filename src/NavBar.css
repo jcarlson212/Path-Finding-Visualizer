@@ -1,18 +1,29 @@
-body{
-    background-color:hsla(50, 33%, 25%, 0.75);
-    color: purple;
-    padding: 0px;
-    font-family: Coourier;
-    text-align: center;
+
+a{
+  font-size: 32px;
+  line-height: 1;
+  height: 50px;
+  font-weight: 100;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color:white
 }
-.e-plus-icon::before {
-    content: '\e823';
+b{
+  font-size:15px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color:white;
+}
+
+  .button1{border-radius:50%;border:0;background:transparent}
+  .button2{border-radius:50%;border:0;background:transparent}
+    select{
+    background:transparent;
+    border:0;
+    color:white;
+    font-size:15px;
+    font-weight: 600;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   }
-  
-  button {
-    margin: 25px 5px 20px 20px;
-  }
-  
+ 
   #loader {
       color: #008cff;
       height: 800px;

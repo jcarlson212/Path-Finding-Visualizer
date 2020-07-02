@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import startnode from "./images/startnode.png";
 import endnode from "./images/endnode.png";
+import './NavBar.css';
 import { CELLS_PER_ROW, CELLS_PER_COL } from "./App";
 import { hashCoord } from "./GridHelperFunctions";
 import { breadthFirstSearch } from "./SearchAlgorithms";
@@ -71,10 +72,10 @@ export class NavigationBar extends React.Component {
             <div style={{ 
                 width: '213%', 
                 height: NAVAGATION_BAR_HEIGHT,
-                backgroundColor: "silver",
+                backgroundColor: "rgb(23,213,213)",
             }}>
-            <p style={{color: "blue"}}>Path Finding Visuslizer </p>
-            
+<div><a>Path Finding Visualizer</a></div>
+        <br/>            
             <select value={this.state.algorithm} onChange={(event) => {
                 this.setState({
                     ...this.state,
@@ -86,7 +87,8 @@ export class NavigationBar extends React.Component {
                 <option value="DFS">DFS</option>
                 <option value="BFS">BFS</option>
             </select>
-                
+            &nbsp;&nbsp;&nbsp;
+
             <select value={this.state.speed} onChange={(event) => {
                 this.setState({
                     ...this.state,
@@ -99,12 +101,13 @@ export class NavigationBar extends React.Component {
                 <option value="Fast">Fast</option>
             </select>
 
-            Drag to starting position:<img alt="startnode" className="startnode" src={startnode} width="40" height="30"/>
-            Drag to ending position:<img alt="endnode" className="endnode" src={endnode} width="45" height="35"/>
+            &nbsp;&nbsp;&nbsp;<b>Drag to starting position:&nbsp;&nbsp;<button class="button button1"><img src={startnode} width="30"height="30"></img></button>
+            &nbsp;&nbsp;&nbsp;Drag to ending position:&nbsp;&nbsp;<button class="button button2"><img src={endnode}width="40"height="30"/></button></b>
 
-            <button onClick={() => { this.run() } }>Run</button>
-            <button onClick={() => {this.clearBoard()}}>Clear Board</button>
-            
+
+            &nbsp;&nbsp;&nbsp;<button class="button button3" onClick={() => {this.run() }}>Run</button>
+            &nbsp;&nbsp;&nbsp;<button class="button button4" onClick={() => {this.clearBoard() }}>Clear Board</button>
+
 
         </div>
     );
