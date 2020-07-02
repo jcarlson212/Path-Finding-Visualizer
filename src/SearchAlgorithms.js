@@ -1,9 +1,8 @@
 import { hashCoord } from './GridHelperFunctions';
 import { Queue } from './DataStructures';
 import { CELL_WIDTH } from './Cell';
-import { NORMAL } from './Constants'
 
-export const breadthFirstSearch = (grid_map, start, end) => {
+export const breadthFirstSearch = (grid_map, start, end, speed) => {
     //grid_map is an object mapping xcoord, ycoord pairs (made using the hash
     //function in GridHelperFunctions.js) to Cell objects (a reference to the object)
     //start is a starting cell coordinate (x,y)
@@ -129,8 +128,8 @@ export const breadthFirstSearch = (grid_map, start, end) => {
             }
         }
         setTimeout(function(){ 
-            breadthFirstSearchHelper(grid_map, q, end, explored)
-        }, NORMAL);
+            breadthFirstSearchHelper(grid_map, q, end, explored, speed)
+        }, speed);
 
 
     }else{
@@ -138,7 +137,7 @@ export const breadthFirstSearch = (grid_map, start, end) => {
     }
 }
 
-const breadthFirstSearchHelper = (grid_map, q, end, explored) => {
+const breadthFirstSearchHelper = (grid_map, q, end, explored, speed) => {
     if(!q.isEmpty()) {
         const currentNode = q.pop()
         let x = currentNode[0]+CELL_WIDTH;
@@ -246,12 +245,20 @@ const breadthFirstSearchHelper = (grid_map, q, end, explored) => {
             }
         }
         setTimeout(function(){ 
-            breadthFirstSearchHelper(grid_map, q, end, explored)
-        }, NORMAL);
+            breadthFirstSearchHelper(grid_map, q, end, explored, speed)
+        }, speed);
 
 
     }else{
         console.log("queue became empty")
     }
     
+}
+
+// To be completed. Should be the same as breadth first search
+// except uses a stack instead of a queue. The stack does not have 
+// a front() function - instead it uses peak.
+export const depthFirstSearch = (grid_map, start, end, speed) => {
+
+
 }

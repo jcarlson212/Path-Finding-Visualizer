@@ -10,9 +10,9 @@ const white_grid_square = {
     borderWidth: 1,
     borderColor: 'black',
     borderStyle: 'solid',
-  }
+}
   
-  const black_grid_square = {
+const black_grid_square = {
     position: "absolute",
     width: CELL_WIDTH,
     height: CELL_WIDTH,
@@ -20,9 +20,9 @@ const white_grid_square = {
     borderWidth: 5,
     borderColor: 'black',
     borderStyle: 'solid',
-  }
+}
 
-  export const green_grid_square = {
+export const green_grid_square = {
     position: "absolute",
     width: CELL_WIDTH,
     height: CELL_WIDTH,
@@ -30,10 +30,9 @@ const white_grid_square = {
     borderWidth: 5,
     borderColor: 'black',
     borderStyle: 'solid',
-  }
+}
 
 export default class Cell extends React.Component {
-
 
     state = {
         xCoord: this.props.xCoord,
@@ -41,6 +40,7 @@ export default class Cell extends React.Component {
         cellColor: this.props.cellColor
     }
 
+    //Makes the cell white
     clear = ()=>{
         this.setState({
             cellColor:"white",
@@ -49,6 +49,7 @@ export default class Cell extends React.Component {
         })
     }
 
+    //Makes the cell green
     markExplored = async () => {
         await this.setState({
             ...this.state,
@@ -56,6 +57,7 @@ export default class Cell extends React.Component {
         })
     }
 
+    //Handles changing from black to white and vice-versa.
     changeColor = (isAClick) => {
         if(this.props.isMouseDown.mouseDown === true || isAClick) {
             if(this.state.cellColor === "white"){

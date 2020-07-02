@@ -2,9 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import startnode from "./images/startnode.png";
 import endnode from "./images/endnode.png";
-import {CELLS_PER_ROW,CELLS_PER_COL} from "./App";
-import {hashCoord} from "./GridHelperFunctions";
-export const NAVAGATION_BAR_HEIGHT = 100;
+import { CELLS_PER_ROW, CELLS_PER_COL } from "./App";
+import { hashCoord } from "./GridHelperFunctions";
+import { breadthFirstSearch } from "./SearchAlgorithms";
+import { NORMAL, FAST, SLOW } from './Constants';
 
 //There needs to be 
 //1) A drop down list of algorithms
@@ -19,78 +20,93 @@ export const NAVAGATION_BAR_HEIGHT = 100;
 // can do nothing at the moment. I am thinking like a green dot in the middle of a 50x50 square
 //6) similar a red node (a red dot)
 //7) After all of this (or before doing this) you can also do the animation of the cells changing color
+export const NAVAGATION_BAR_HEIGHT = 100;
 
-export class NavigationBar extends React.Component {state={
-    isDragging: false,
+export class NavigationBar extends React.Component {
+    
+    state={
+        isDragging: false,
 
-    originalX: 0,
-    originalY: 0,
+        originalX: 0,
+        originalY: 0,
 
-    translateX: 0,
-    translateY: 0,
+        translateX: 0,
+        translateY: 0,
 
-    lastTranslateX: 0,
-    lastTranslateY: 0
+        lastTranslateX: 0,
+        lastTranslateY: 0,
+        algorithm: "algorithm", 
+        speed: "Medium",
+    }
 
-}
     constructor(props) {
         super(props);
-        this.state = {value: 'algorithm'};
+    }
 
-        this.handleChange = this.handleChange.bind(this);
+    clearBoard=()=>{
+        for(let i = 0; i < CELLS_PER_ROW; ++i){
+            for(let j =0; j < CELLS_PER_COL; ++j) {
+                let xCoord= 50*i
+                let yCoord= 50*j + NAVAGATION_BAR_HEIGHT
+                if (this.props.grid_map.refs[hashCoord(xCoord,yCoord)] !== undefined){
+                    this.props.grid_map.refs[hashCoord(xCoord,yCoord)].clear()
+                }
+            }           
         }
+    }
 
-        handleChange(event) {
-            this.setState({value: event.target.value});
+    run = () => {
+        console.log(this.state.speed);
+        if(this.state.speed === "Medium" || this.state.speed === "Speed" ){
+            breadthFirstSearch(this.props.grid_map.refs, [200, 100], [300, 800], NORMAL)
+        }else if(this.state.speed === "Fast") {
+            breadthFirstSearch(this.props.grid_map.refs, [200, 100], [300, 800], FAST)
+        }else{
+            breadthFirstSearch(this.props.grid_map.refs, [200, 100], [300, 800], SLOW)
         }
-
-        clearBoard=()=>{
-            for(let i = 0; i < CELLS_PER_ROW; ++i){
-                for(let j =0; j < CELLS_PER_COL; ++j) {
-                
-                    let xCoord= 50*i
-                    let yCoord= 50*j + NAVAGATION_BAR_HEIGHT
-                    if (this.props.grid_map.refs[hashCoord(xCoord,yCoord)] !== undefined)
-                    {
-                        this.props.grid_map.refs[hashCoord(xCoord,yCoord)].clear()
-                    }
-
-                    
-                }           
-            }
-        }
+    }
+        
+    render() {
+        return(
+            <div style={{ 
+                width: '213%', 
+                height: NAVAGATION_BAR_HEIGHT,
+                backgroundColor: "silver",
+            }}>
+            <p style={{color: "blue"}}>Path Finding Visuslizer </p>
             
-        render() {
-            return(
-                <div style={{ 
-                    width: '213%', 
-                    height: NAVAGATION_BAR_HEIGHT,
-                    backgroundColor: "silver",
-                }}>
-                <p style={{color: "blue"}}>Path Finding Visuslizer </p>
-                
-                <select value={this.state.value} onChange={this.handleChange}>
-              <option value="Algorithm">Algorithm</option>
-              <option value="Dijkstra's Algorithm">Dijkstra's Algorithm</option>
-              <option value="DFS">DFS</option>
-              <option value="BFS">BFS</option>
+            <select value={this.state.algorithm} onChange={(event) => {
+                this.setState({
+                    ...this.state,
+                    algorithm: event.target.value
+                })
+            }}>
+                <option value="Algorithm">Algorithm</option>
+                <option value="Dijkstra's Algorithm">Dijkstra's Algorithm</option>
+                <option value="DFS">DFS</option>
+                <option value="BFS">BFS</option>
             </select>
-                  
-            <select>
-            <option value="Speed">Speed</option>
-              <option value="Slow">Slow</option>
-              <option value="Medium">Medium</option>
-              <option value="Fast">Fast</option>
+                
+            <select value={this.state.speed} onChange={(event) => {
+                this.setState({
+                    ...this.state,
+                    speed: event.target.value
+                })
+            }}>
+                <option value="Speed">Speed</option>
+                <option value="Slow">Slow</option>
+                <option value="Medium">Medium</option>
+                <option value="Fast">Fast</option>
             </select>
 
             Drag to starting position:<img alt="startnode" className="startnode" src={startnode} width="40" height="30"/>
             Drag to ending position:<img alt="endnode" className="endnode" src={endnode} width="45" height="35"/>
 
-            <button onClick={() => {console.log("do nothing")}}>Run</button>
+            <button onClick={() => { this.run() } }>Run</button>
             <button onClick={() => {this.clearBoard()}}>Clear Board</button>
             
 
-            </div>
+        </div>
     );
     }
 }
