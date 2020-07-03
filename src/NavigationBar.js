@@ -56,14 +56,20 @@ export class NavigationBar extends React.Component {
         }
     }
 
+    startNodePressed = () => {
+        console.log("start node pressed")
+        this.props.nodePressed.start_pressed = true
+        this.props.nodePressed.end_pressed = false
+    }
+
     run = () => {
         console.log(this.state.speed);
         if(this.state.speed === "Medium" || this.state.speed === "Speed" ){
-            breadthFirstSearch(this.props.grid_map.refs, [200, 100], [300, 800], NORMAL)
+            breadthFirstSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, NORMAL)
         }else if(this.state.speed === "Fast") {
-            breadthFirstSearch(this.props.grid_map.refs, [200, 100], [300, 800], FAST)
+            breadthFirstSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, FAST)
         }else{
-            breadthFirstSearch(this.props.grid_map.refs, [200, 100], [300, 800], SLOW)
+            breadthFirstSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, SLOW)
         }
     }
         
@@ -103,7 +109,7 @@ export class NavigationBar extends React.Component {
                 <option value="Fast" style={{color: "black"}}>Fast</option>
             </select>
 
-            &nbsp;&nbsp;&nbsp;<b>Drag to starting position:&nbsp;&nbsp;<button class="button button1"><img src={startnode} width="30"height="30"></img></button>
+            &nbsp;&nbsp;&nbsp;<b>Drag to starting position:&nbsp;&nbsp;<button class="button button1" draggable={true} onDragStart={() => { this.startNodePressed()}} ><img src={startnode} width="30"height="30"></img></button>
             &nbsp;&nbsp;&nbsp;Drag to ending position:&nbsp;&nbsp;<button class="button button2"><img src={endnode}width="40"height="30"/></button></b>
 
 

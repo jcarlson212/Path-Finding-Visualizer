@@ -79,6 +79,14 @@ export default class Cell extends React.Component {
         }
     }
 
+    handleDragOver = () => {
+        if(this.props.nodePressed.start_pressed){
+            this.props.endNodes.startNode = [this.state.xCoord, this.state.yCoord]
+        }else if(this.props.nodePressed.end_pressed){
+            this.props.endNodes.endNode = [this.state.xCoord, this.state.yCoord]
+        }
+    }
+
     render(){
         return (
             <div style={
@@ -101,7 +109,7 @@ export default class Cell extends React.Component {
                         left: this.state.xCoord,
                         top: this.state.yCoord,
                     }
-            } onMouseEnter={() => this.changeColor(false)} onClick={() => this.changeColor(true)}>
+            } onMouseEnter={() => this.changeColor(false)} onClick={() => this.changeColor(true)} onDragOver={() => {this.handleDragOver()}} >
             </div>
         )
     }
