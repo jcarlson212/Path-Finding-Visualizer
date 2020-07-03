@@ -31,7 +31,9 @@ class App extends React.Component {
     endPointsForSearch: {
       startNode: [200, 100],
       endNode: [300, 800],
-    }
+      start_ref: null,
+      end_ref: null,
+    },
   }
 
   //Defines the coordinates of where cells will eventually be rendered / placed when initialized
@@ -89,7 +91,7 @@ class App extends React.Component {
     return (
       <div style={{ height: '2600px' }}>
         <NavigationBar  grid_map={this.state.grid_map_to_pass_down} nodePressed={ this.state.nodePressed } endPoints={this.state.endPointsForSearch}/>
-        <div className="App" onMouseDown={() => { this.state.isMouseDown.mouseDown = true }} onMouseUp={() => { this.state.isMouseDown.mouseDown = false }} >
+        <div className="App" onMouseDown={() => { this.state.isMouseDown.mouseDown = true }} onMouseUp={() => { this.state.isMouseDown.mouseDown = false }} endPoints={this.state.endPointsForSearch}>
           {grid}
         </div>
       </div>

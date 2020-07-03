@@ -7,6 +7,7 @@ import { CELLS_PER_ROW, CELLS_PER_COL } from "./App";
 import { hashCoord } from "./GridHelperFunctions";
 import { breadthFirstSearch } from "./SearchAlgorithms";
 import { NORMAL, FAST, SLOW } from './Constants';
+import { CELL_WIDTH } from './Cell';
 
 //There needs to be 
 //1) A drop down list of algorithms
@@ -62,6 +63,12 @@ export class NavigationBar extends React.Component {
         this.props.nodePressed.end_pressed = false
     }
 
+    endNodePressed = () => {
+        console.log("end node pressed")
+        this.props.nodePressed.end_pressed = true
+        this.props.nodePressed.start_pressed = false
+    }
+
     run = () => {
         console.log(this.state.speed);
         if(this.state.speed === "Medium" || this.state.speed === "Speed" ){
@@ -109,8 +116,8 @@ export class NavigationBar extends React.Component {
                 <option value="Fast" style={{color: "black"}}>Fast</option>
             </select>
 
-            &nbsp;&nbsp;&nbsp;<b>Drag to starting position:&nbsp;&nbsp;<button class="button button1" draggable={true} onDragStart={() => { this.startNodePressed()}} ><img src={startnode} width="30"height="30"></img></button>
-            &nbsp;&nbsp;&nbsp;Drag to ending position:&nbsp;&nbsp;<button class="button button2"><img src={endnode}width="40"height="30"/></button></b>
+            &nbsp;&nbsp;&nbsp;<b>Drag to starting position:&nbsp;&nbsp;<button class="button button1" draggable={true} onDragStart={() => { this.startNodePressed()}} ><img src={startnode} width="30" height="30"></img></button>
+            &nbsp;&nbsp;&nbsp;Drag to ending position:&nbsp;&nbsp;<button class="button button2" draggable={true} onDragStart={() => { this.endNodePressed() }}><img src={endnode}width="40"height="30"/></button></b>
 
 
             &nbsp;&nbsp;&nbsp;<button class="button button3" onClick={() => {this.run() }}>Run</button>
