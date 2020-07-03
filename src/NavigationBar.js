@@ -6,7 +6,7 @@ import './NavBar.css';
 import { CELLS_PER_ROW, CELLS_PER_COL } from "./App";
 import { hashCoord } from "./GridHelperFunctions";
 import { breadthFirstSearch } from "./SearchAlgorithms";
-import { NORMAL, FAST, SLOW } from './Constants';
+import { NORMAL, FAST, SLOW, ULTRA } from './Constants';
 import { CELL_WIDTH } from './Cell';
 
 //There needs to be 
@@ -75,8 +75,10 @@ export class NavigationBar extends React.Component {
             breadthFirstSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, NORMAL)
         }else if(this.state.speed === "Fast") {
             breadthFirstSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, FAST)
-        }else{
+        }else if(this.state.speed == "Slow"){
             breadthFirstSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, SLOW)
+        }else{
+            breadthFirstSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, ULTRA)
         }
     }
         
@@ -114,14 +116,15 @@ export class NavigationBar extends React.Component {
                 <option value="Slow" style={{color: "black"}}>Slow</option>
                 <option value="Medium" style={{color: "black"}}>Medium</option>
                 <option value="Fast" style={{color: "black"}}>Fast</option>
+                <option value="Ultra" style={{color: "black"}}>Ultra</option>
             </select>
 
             &nbsp;&nbsp;&nbsp;<b>Drag to starting position:&nbsp;&nbsp;<button class="button button1" draggable={true} onDragStart={() => { this.startNodePressed()}} ><img src={startnode} width="30" height="30"></img></button>
             &nbsp;&nbsp;&nbsp;Drag to ending position:&nbsp;&nbsp;<button class="button button2" draggable={true} onDragStart={() => { this.endNodePressed() }}><img src={endnode}width="40"height="30"/></button></b>
 
 
-            &nbsp;&nbsp;&nbsp;<button class="button button3" onClick={() => {this.run() }}>Run</button>
-            &nbsp;&nbsp;&nbsp;<button class="button button4" onClick={() => {this.clearBoard() }}>Clear Board</button>
+            &nbsp;&nbsp;&nbsp;<button class="button button3" onClick={() => { this.run() } }>Run</button>
+            &nbsp;&nbsp;&nbsp;<button class="button button4" onClick={() => { this.clearBoard() }}>Clear Board</button>
 
 
         </div>
