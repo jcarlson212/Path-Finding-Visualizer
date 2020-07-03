@@ -74,18 +74,20 @@ export class NavigationBar extends React.Component {
                 height: NAVAGATION_BAR_HEIGHT,
                 backgroundColor: "rgb(23,213,213)",
             }}>
-<div><a>Path Finding Visualizer</a></div>
-        <br/>            
+            <div>
+                <a>Path Finding Visualizer</a>
+            </div>
+            <br/>          
             <select value={this.state.algorithm} onChange={(event) => {
                 this.setState({
                     ...this.state,
                     algorithm: event.target.value
                 })
             }}>
-                <option value="Algorithm">Algorithm</option>
-                <option value="Dijkstra's Algorithm">Dijkstra's Algorithm</option>
-                <option value="DFS">DFS</option>
-                <option value="BFS">BFS</option>
+                <option value="Algorithm" style={{color: "black"}}>Algorithm</option>
+                <option value="Dijkstra's Algorithm" style={{color: "black"}}>Dijkstra's Algorithm</option>
+                <option value="DFS" style={{color: "black"}}>DFS</option>
+                <option value="BFS" style={{color: "black"}}>BFS</option>
             </select>
             &nbsp;&nbsp;&nbsp;
 
@@ -95,10 +97,10 @@ export class NavigationBar extends React.Component {
                     speed: event.target.value
                 })
             }}>
-                <option value="Speed">Speed</option>
-                <option value="Slow">Slow</option>
-                <option value="Medium">Medium</option>
-                <option value="Fast">Fast</option>
+                <option value="Speed" style={{color: "black"}}>Speed</option>
+                <option value="Slow" style={{color: "black"}}>Slow</option>
+                <option value="Medium" style={{color: "black"}}>Medium</option>
+                <option value="Fast" style={{color: "black"}}>Fast</option>
             </select>
 
             &nbsp;&nbsp;&nbsp;<b>Drag to starting position:&nbsp;&nbsp;<button class="button button1"><img src={startnode} width="30"height="30"></img></button>
