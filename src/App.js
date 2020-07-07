@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Cell from './Cell';
+import Cell, { CELL_WIDTH } from './Cell';
 import { NavigationBar, NAVAGATION_BAR_HEIGHT } from './NavigationBar';
 import { hashCoord } from './GridHelperFunctions';
 import { breadthFirstSearch } from './SearchAlgorithms';
@@ -23,6 +23,16 @@ class App extends React.Component {
       refs: {//every ref has a key which maps it to an actual cell class.
 
       },
+    },
+    nodePressed: {
+      start_pressed: false,
+      end_pressed: false,
+    },
+    endPointsForSearch: {
+      startNode: [200, 100],
+      endNode: [300, 800],
+      start_ref: null,
+      end_ref: null,
     },
   }
 
@@ -58,6 +68,7 @@ class App extends React.Component {
     this.state.grid_map_to_pass_down.refs = this.state.grid_map
   }
 
+
   //renders a Navigation bar and a grid of cells.
   render() {
     console.log("main render called")
@@ -67,7 +78,7 @@ class App extends React.Component {
     for (i = 0; i < this.state.cells.length; i++) {
       const tempIndex = i
       const cell = this.state.cells[tempIndex]
-      let newCell = <Cell xCoord={cell["xCoord"]} yCoord={cell["yCoord"]} cellColor="white" key={i} isMouseDown={ this.state.isMouseDown } ref={hashCoord(cell["xCoord"], cell["yCoord"])} />
+      let newCell = <Cell xCoord={cell["xCoord"]} yCoord={cell["yCoord"]} cellColor="white" key={i} isMouseDown={ this.state.isMouseDown } ref={hashCoord(cell["xCoord"], cell["yCoord"])} nodePressed={this.state.nodePressed} endNodes={this.state.endPointsForSearch} />
       grid.push(newCell)
       grid_map = {
         ...grid_map,
@@ -79,8 +90,8 @@ class App extends React.Component {
 
     return (
       <div style={{ height: '2600px' }}>
-        <NavigationBar  grid_map={this.state.grid_map_to_pass_down} />
-        <div className="App" onMouseDown={() => { this.state.isMouseDown.mouseDown = true }} onMouseUp={() => { this.state.isMouseDown.mouseDown = false }} >
+        <NavigationBar  grid_map={this.state.grid_map_to_pass_down} nodePressed={ this.state.nodePressed } endPoints={this.state.endPointsForSearch}/>
+        <div className="App" onMouseDown={() => { this.state.isMouseDown.mouseDown = true }} onMouseUp={() => { this.state.isMouseDown.mouseDown = false }} endPoints={this.state.endPointsForSearch}>
           {grid}
         </div>
       </div>

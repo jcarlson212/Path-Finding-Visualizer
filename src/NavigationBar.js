@@ -5,8 +5,9 @@ import endnode from "./images/endnode.png";
 import './NavBar.css';
 import { CELLS_PER_ROW, CELLS_PER_COL } from "./App";
 import { hashCoord } from "./GridHelperFunctions";
-import { breadthFirstSearch } from "./SearchAlgorithms";
-import { NORMAL, FAST, SLOW } from './Constants';
+import { breadthFirstSearch, AStarSearch } from "./SearchAlgorithms";
+import { NORMAL, FAST, SLOW, ULTRA } from './Constants';
+import { CELL_WIDTH } from './Cell';
 
 //There needs to be 
 //1) A drop down list of algorithms
@@ -56,14 +57,45 @@ export class NavigationBar extends React.Component {
         }
     }
 
+    startNodePressed = () => {
+        console.log("start node pressed")
+        this.props.nodePressed.start_pressed = true
+        this.props.nodePressed.end_pressed = false
+    }
+
+    endNodePressed = () => {
+        console.log("end node pressed")
+        this.props.nodePressed.end_pressed = true
+        this.props.nodePressed.start_pressed = false
+    }
+
     run = () => {
         console.log(this.state.speed);
         if(this.state.speed === "Medium" || this.state.speed === "Speed" ){
-            breadthFirstSearch(this.props.grid_map.refs, [200, 100], [300, 800], NORMAL)
+            if(this.state.algorithm === "A*") {
+                AStarSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, NORMAL)
+            }else{
+                breadthFirstSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, NORMAL)
+            }
+    
         }else if(this.state.speed === "Fast") {
-            breadthFirstSearch(this.props.grid_map.refs, [200, 100], [300, 800], FAST)
+            if(this.state.algorithm === "A*") {
+                AStarSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, FAST)
+            }else{
+                breadthFirstSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, FAST)
+            }
+        }else if(this.state.speed == "Slow"){
+            if(this.state.algorithm === "A*") {
+                AStarSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, SLOW)
+            }else{
+                breadthFirstSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, SLOW)
+            }
         }else{
-            breadthFirstSearch(this.props.grid_map.refs, [200, 100], [300, 800], SLOW)
+            if(this.state.algorithm === "A*") {
+                AStarSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, ULTRA)
+            }else{
+                breadthFirstSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, ULTRA)
+            }
         }
     }
         
@@ -74,18 +106,20 @@ export class NavigationBar extends React.Component {
                 height: NAVAGATION_BAR_HEIGHT,
                 backgroundColor: "rgb(23,213,213)",
             }}>
-<div><a>Path Finding Visualizer</a></div>
-        <br/>            
+            <div>
+                <a>Path Finding Visualizer</a>
+            </div>
+            <br/>          
             <select value={this.state.algorithm} onChange={(event) => {
                 this.setState({
                     ...this.state,
                     algorithm: event.target.value
                 })
             }}>
-                <option value="Algorithm">Algorithm</option>
-                <option value="Dijkstra's Algorithm">Dijkstra's Algorithm</option>
-                <option value="DFS">DFS</option>
-                <option value="BFS">BFS</option>
+                <option value="Algorithm" style={{color: "black"}}>Algorithm</option>
+                <option value="A*" style={{color: "black"}}>A*</option>
+                <option value="DFS" style={{color: "black"}}>DFS</option>
+                <option value="BFS" style={{color: "black"}}>BFS</option>
             </select>
             &nbsp;&nbsp;&nbsp;
 
@@ -95,18 +129,19 @@ export class NavigationBar extends React.Component {
                     speed: event.target.value
                 })
             }}>
-                <option value="Speed">Speed</option>
-                <option value="Slow">Slow</option>
-                <option value="Medium">Medium</option>
-                <option value="Fast">Fast</option>
+                <option value="Speed" style={{color: "black"}}>Speed</option>
+                <option value="Slow" style={{color: "black"}}>Slow</option>
+                <option value="Medium" style={{color: "black"}}>Medium</option>
+                <option value="Fast" style={{color: "black"}}>Fast</option>
+                <option value="Ultra" style={{color: "black"}}>Ultra</option>
             </select>
 
-            &nbsp;&nbsp;&nbsp;<b>Drag to starting position:&nbsp;&nbsp;<button class="button button1"><img src={startnode} width="30"height="30"></img></button>
-            &nbsp;&nbsp;&nbsp;Drag to ending position:&nbsp;&nbsp;<button class="button button2"><img src={endnode}width="40"height="30"/></button></b>
+            &nbsp;&nbsp;&nbsp;<b>Drag to starting position:&nbsp;&nbsp;<button class="button button1" draggable={true} onDragStart={() => { this.startNodePressed()}} ><img src={startnode} width="30" height="30"></img></button>
+            &nbsp;&nbsp;&nbsp;Drag to ending position:&nbsp;&nbsp;<button class="button button2" draggable={true} onDragStart={() => { this.endNodePressed() }}><img src={endnode}width="40"height="30"/></button></b>
 
 
-            &nbsp;&nbsp;&nbsp;<button class="button button3" onClick={() => {this.run() }}>Run</button>
-            &nbsp;&nbsp;&nbsp;<button class="button button4" onClick={() => {this.clearBoard() }}>Clear Board</button>
+            &nbsp;&nbsp;&nbsp;<button class="button button3" onClick={() => { this.run() } }>Run</button>
+            &nbsp;&nbsp;&nbsp;<button class="button button4" onClick={() => { this.clearBoard() }}>Clear Board</button>
 
 
         </div>
