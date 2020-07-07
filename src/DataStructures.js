@@ -41,7 +41,7 @@ export class PriorityQueue {
 
     heapifyUp = (index) => {
         if(index === 0) return
-        if(this.items[index] < this.items[(index - 1 ) / 2]) {
+        if(this.items[index][1] < this.items[(index - 1 ) / 2][1]) {
             //move it up by swaping
             const temp = this.items[index]
             this.items[index] = this.items[(index - 1) / 2]
@@ -56,8 +56,8 @@ export class PriorityQueue {
             //has left child
             if(2*index+2 <= this.items.length-1){
                 //has right child and left child
-                if(this.items[2*index+1] < this.items[index]){
-                    if(this.items[2*index+2] < this.items[2*index+1]){
+                if(this.items[2*index+1][1] < this.items[index][1]){
+                    if(this.items[2*index+2][1] < this.items[2*index+1][1]){
                         //swap
                         const temp = this.items[2*index+2]
                         this.items[2*index+2] = this.items[index]
@@ -75,7 +75,7 @@ export class PriorityQueue {
                         this.heapifyDown(2*index+1)
                     }
                     
-                }else if(this.items[2*index+2] < this.items[index]){
+                }else if(this.items[2*index+2][1] < this.items[index][1]){
                     //swap
                     const temp = this.items[2*index+2]
                     this.items[2*index+2] = this.items[index]
@@ -86,7 +86,7 @@ export class PriorityQueue {
                 }
             }else{
                 //only has left child
-                if(this.items[2*index+1] < this.items[index]){
+                if(this.items[2*index+1][1] < this.items[index][1]){
                     //swap
                     const temp = this.items[2*index+1]
                     this.items[2*index+1] = this.items[index]
