@@ -5,7 +5,7 @@ import endnode from "./images/endnode.png";
 import './NavBar.css';
 import { CELLS_PER_ROW, CELLS_PER_COL } from "./App";
 import { hashCoord } from "./GridHelperFunctions";
-import { breadthFirstSearch } from "./SearchAlgorithms";
+import { breadthFirstSearch, AStarSearch } from "./SearchAlgorithms";
 import { NORMAL, FAST, SLOW, ULTRA } from './Constants';
 import { CELL_WIDTH } from './Cell';
 
@@ -72,13 +72,30 @@ export class NavigationBar extends React.Component {
     run = () => {
         console.log(this.state.speed);
         if(this.state.speed === "Medium" || this.state.speed === "Speed" ){
-            breadthFirstSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, NORMAL)
+            if(this.state.algorithm === "A*") {
+                AStarSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, NORMAL)
+            }else{
+                breadthFirstSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, NORMAL)
+            }
+    
         }else if(this.state.speed === "Fast") {
-            breadthFirstSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, FAST)
+            if(this.state.algorithm === "A*") {
+                AStarSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, FAST)
+            }else{
+                breadthFirstSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, FAST)
+            }
         }else if(this.state.speed == "Slow"){
-            breadthFirstSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, SLOW)
+            if(this.state.algorithm === "A*") {
+                AStarSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, SLOW)
+            }else{
+                breadthFirstSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, SLOW)
+            }
         }else{
-            breadthFirstSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, ULTRA)
+            if(this.state.algorithm === "A*") {
+                AStarSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, ULTRA)
+            }else{
+                breadthFirstSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, ULTRA)
+            }
         }
     }
         
@@ -100,7 +117,7 @@ export class NavigationBar extends React.Component {
                 })
             }}>
                 <option value="Algorithm" style={{color: "black"}}>Algorithm</option>
-                <option value="Dijkstra's Algorithm" style={{color: "black"}}>Dijkstra's Algorithm</option>
+                <option value="A*" style={{color: "black"}}>A*</option>
                 <option value="DFS" style={{color: "black"}}>DFS</option>
                 <option value="BFS" style={{color: "black"}}>BFS</option>
             </select>

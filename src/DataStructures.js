@@ -36,18 +36,19 @@ export class PriorityQueue {
 
     push(item) {
         this.items.push(item)
+        console.log(item)
         this.heapifyUp(this.items.length-1)
     }
 
     heapifyUp = (index) => {
         if(index === 0) return
-        if(this.items[index][1] < this.items[(index - 1 ) / 2][1]) {
+        if(this.items[index][1] < this.items[Math.floor((index - 1 ) / 2)][1]) {
             //move it up by swaping
             const temp = this.items[index]
-            this.items[index] = this.items[(index - 1) / 2]
-            this.items[(index - 1) / 2] = temp
+            this.items[index] = this.items[Math.floor((index - 1 ) / 2)]
+            this.items[Math.floor((index - 1 ) / 2)] = temp
 
-            this.heapifyUp((index - 1) / 2)
+            this.heapifyUp(Math.floor((index - 1 ) / 2))
         }
     }
 
