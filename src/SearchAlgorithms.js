@@ -340,6 +340,125 @@ export const depthFirstSearch = (grid_map, start, end, speed) =>
         console.log("stack became empty")
     }
 }
+const depthFirstSearchHelper = (grid_map, stack, end, explored, speed) => 
+{
+    if (!stack.isEmpty()) 
+    {
+        const currentNode = stack.pop()
+        let x = currentNode[0] + CELL_WIDTH;
+        let y = currentNode[1];
+        if (hashCoord(x, y) in grid_map) 
+        {
+            if (!(hashCoord(x, y) in explored)) 
+            {
+                const newX = x
+                const newY = y
+                if (grid_map[hashCoord(newX, newY)] !== undefined && grid_map[hashCoord(newX, newY)].state.cellColor !== "black") 
+                {
+                    grid_map[hashCoord(newX, newY)].markExplored()
+                    stack.push([newX, newY]);
+                    explored = 
+                    {
+                        ...explored,
+                        [hashCoord(newX, newY)]: true,
+                    }
+                }
+                if (newX === end[0] && newY === end[1]) 
+                {
+                    console.log("reached", end)
+                    return;
+                }
+            }
+        }
+        x = currentNode[0] - CELL_WIDTH;
+        y = currentNode[1];
+        if (hashCoord(x, y) in grid_map) 
+        {
+            if (!(hashCoord(x, y) in explored)) 
+            {
+                const newX = x
+                const newY = y
+                if (grid_map[hashCoord(newX, newY)] !== undefined && grid_map[hashCoord(newX, newY)].state.cellColor !== "black") 
+                {
+                    grid_map[hashCoord(newX, newY)].markExplored()
+                    stack.push([newX, newY]);
+                    explored = 
+                    {
+                        ...explored,
+                        [hashCoord(newX, newY)]: true,
+                    }
+                }
+                if (newX === end[0] && newY === end[1]) 
+                {
+                    console.log("reached", end)
+                    return;
+                }
+            }
+        }
+        x = currentNode[0];
+        y = currentNode[1] + CELL_WIDTH;
+        if (hashCoord(x, y) in grid_map) 
+        {
+            if (!(hashCoord(x, y) in explored)) 
+            {
+                const newX = x
+                const newY = y
+                if (grid_map[hashCoord(newX, newY)] !== undefined && grid_map[hashCoord(newX, newY)].state.cellColor !== "black")
+                {
+                    grid_map[hashCoord(newX, newY)].markExplored()
+                    stack.push([newX, newY]);
+                    explored = 
+                    {
+                        ...explored,
+                        [hashCoord(newX, newY)]: true,
+                    }
+                }
+                if (newX === end[0] && newY === end[1]) 
+                {
+                    console.log("reached", end)
+                    return;
+                }
+            }
+        }
+        x = currentNode[0];
+        y = currentNode[1] - CELL_WIDTH;
+        if (hashCoord(x, y) in grid_map) 
+        {
+            if (!(hashCoord(x, y) in explored)) 
+            {
+                const newX = x
+                const newY = y
+                if (grid_map[hashCoord(newX, newY)] !== undefined && grid_map[hashCoord(newX, newY)].state.cellColor !== "black")
+                {
+                    grid_map[hashCoord(newX, newY)].markExplored()
+                    stack.push([newX, newY]);
+                    explored = 
+                    {
+                        ...explored,
+                        [hashCoord(newX, newY)]: true,
+                    }
+                }
+                if (newX === end[0] && newY === end[1]) 
+                {
+                    console.log("reached", end)
+                    return;
+                }
+            }
+        }
+        setTimeout(function () 
+        {
+            breadthFirstSearchHelper(grid_map, stack, end, explored, speed)
+        }, speed);
+    } 
+    else 
+    {
+        console.log("stack became empty")
+    }
+}
+
+
+
+
 
 const myDistance = (start, end) => {
     return Math.abs(end[1]-start[1]) + Math.abs(end[0] - start[0])
@@ -598,6 +717,4 @@ const AStarSearchHelper = (grid_map, q, end, explored, speed) => {
     } else {
         console.log("queue became empty")
     }
-
-///start of DFS HELPER function
 }
