@@ -29,6 +29,10 @@ export class Queue {
     }
 }
 
+
+//This is a min-heap. It assumes the elements pushed are a pair
+//where the first element in the pair is the actual node/element and the second
+//element in the pair is the value of that element (for heapifying)
 export class PriorityQueue {
     constructor() {
         this.items = []

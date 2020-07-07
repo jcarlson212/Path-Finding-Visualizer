@@ -83,10 +83,12 @@ export default class Cell extends React.Component {
         }
     }
 
+    //This is for some reason required for using the onDrop
     onDragOver = (event) => {
         event.preventDefault();
     }
 
+    //helps create a start or end node when a start / end node is dropped onto this cell
     handleDrop = () => {
         console.log("dropped")
         console.log(this.props.endNodes)
@@ -127,6 +129,7 @@ export default class Cell extends React.Component {
         }
     }
 
+    //renders a cell based on if it is a start node, end node, and its color.
     render(){
         if(!this.state.isStartNode){
             if(!this.state.isEndNode){
