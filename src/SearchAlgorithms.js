@@ -1,9 +1,5 @@
 import { hashCoord } from './GridHelperFunctions';
-<<<<<<< HEAD
-import { Queue, Stack } from './DataStructures';
-=======
-import { Queue, PriorityQueue } from './DataStructures';
->>>>>>> ab56526450dffc9d658129c9c42dd336bbe77b66
+import { Queue, Stack, PriorityQueue } from './DataStructures';
 import { CELL_WIDTH } from './Cell';
 
 export const breadthFirstSearch = (grid_map, start, end, speed) => {
