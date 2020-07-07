@@ -263,8 +263,8 @@ const breadthFirstSearchHelper = (grid_map, q, end, explored, speed) => {
 export const depthFirstSearch = (grid_map, start, end, speed) => 
 {
     console.log("running DFS");
-    var stack = [];
-    stack.push(start[0]);
+    var stack = new Stack();
+    stack.push(start);
     if (end === start) 
     {
         console.log(start, "reached", end);
@@ -330,6 +330,10 @@ export const depthFirstSearch = (grid_map, start, end, speed) =>
                 }
             }
         }
+        setTimeout(function () 
+        {
+            depthFirstSearchHelper(grid_map, stack, end, explored, speed)
+        }, speed);
     }
     else
     {
@@ -443,7 +447,7 @@ const depthFirstSearchHelper = (grid_map, stack, end, explored, speed) =>
         }
         setTimeout(function () 
         {
-            breadthFirstSearchHelper(grid_map, stack, end, explored, speed)
+            depthFirstSearchHelper(grid_map, stack, end, explored, speed)
         }, speed);
     } 
     else 

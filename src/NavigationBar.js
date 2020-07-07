@@ -5,7 +5,7 @@ import endnode from "./images/endnode.png";
 import './NavBar.css';
 import { CELLS_PER_ROW, CELLS_PER_COL } from "./App";
 import { hashCoord } from "./GridHelperFunctions";
-import { breadthFirstSearch, AStarSearch } from "./SearchAlgorithms";
+import { breadthFirstSearch, AStarSearch, depthFirstSearch } from "./SearchAlgorithms";
 import { NORMAL, FAST, SLOW, ULTRA } from './Constants';
 import { CELL_WIDTH } from './Cell';
 
@@ -74,27 +74,34 @@ export class NavigationBar extends React.Component {
         if(this.state.speed === "Medium" || this.state.speed === "Speed" ){
             if(this.state.algorithm === "A*") {
                 AStarSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, NORMAL)
+            }else if(this.state.algorithm === "DFS"){
+                depthFirstSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, NORMAL)
             }else{
                 breadthFirstSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, NORMAL)
             }
-    
         }else if(this.state.speed === "Fast") {
             if(this.state.algorithm === "A*") {
                 AStarSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, FAST)
+            }else if(this.state.algorithm === "DFS"){
+                depthFirstSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, FAST)
             }else{
                 breadthFirstSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, FAST)
             }
-        }else if(this.state.speed == "Slow"){
+        }else if(this.state.speed === "Slow"){
             if(this.state.algorithm === "A*") {
                 AStarSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, SLOW)
+            }else if(this.state.algorithm === "DFS"){
+                depthFirstSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, SLOW)
             }else{
                 breadthFirstSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, SLOW)
             }
         }else{
             if(this.state.algorithm === "A*") {
-                AStarSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, ULTRA)
+                AStarSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, NORMAL)
+            }else if(this.state.algorithm === "DFS"){
+                depthFirstSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, NORMAL)
             }else{
-                breadthFirstSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, ULTRA)
+                breadthFirstSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, NORMAL)
             }
         }
     }
