@@ -1,10 +1,11 @@
 import React from 'react';
 import startnode from "./images/startnode.png";
 import endnode from "./images/endnode.png";
-export const CELL_WIDTH = 50;
 import './App.css'; //styles
-import ReactCSSTransitionGroup from 'react-transition-group'; // ES6
-var ReactCSSTransitionGroup = require('react-transition-group');
+
+
+export const CELL_WIDTH = 50;
+
 
 const white_grid_square = {
     position: "absolute",
