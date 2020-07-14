@@ -97,11 +97,11 @@ export class NavigationBar extends React.Component {
             }
         }else{
             if(this.state.algorithm === "A*") {
-                AStarSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, NORMAL)
+                AStarSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, ULTRA)
             }else if(this.state.algorithm === "DFS"){
-                depthFirstSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, NORMAL)
+                depthFirstSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, ULTRA)
             }else{
-                breadthFirstSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, NORMAL)
+                breadthFirstSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, ULTRA)
             }
         }
     }

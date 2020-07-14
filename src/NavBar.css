@@ -1,4 +1,5 @@
 
+
 a{
   font-size: 32px;
   line-height: 1;
@@ -32,3 +33,30 @@ b{
       top: 45%;
       width: 30%;
   }
+.white_grid_square {
+  position: "absolute";
+  width: 50;
+  height: 50;
+  background-color: 'white';
+  border-width: 1;
+  border-color: 'black';
+  border-style: 'solid';
+}
+.black_grid_square {
+  position: "absolute";
+  width: 50;
+  height: 50;
+  background-color: 'black';
+  border-width: 1;
+  border-color: 'black';
+  border-style: 'solid';
+}
+.green_grid_square {
+  position: "absolute";
+  width: 50;
+  height: 50;
+  background-color: 'green';
+  border-width: 1;
+  border-color: 'black';
+  border-style: 'solid';
+}
