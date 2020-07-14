@@ -36,7 +36,21 @@
     transform: rotate(360deg);
   }
 }
-
+.style{
+  animation-duration: 2s;
+}
+@keyframes style{
+  
+  0%{
+    background-color: 'white';
+  }
+  50%{
+    background-color:'orange';
+  }
+  100%{
+    background-color: 'green';
+  }
+}
 img{
   -ms-user-select: none;      /* IE 10+ */
   -moz-user-select: none;     /* Firefox all */
@@ -116,5 +130,9 @@ img{
   border-width: 5;
   border-color: 'black';
   border-style: 'solid';
+  
 }
+
+
+
 
