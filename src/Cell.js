@@ -26,33 +26,40 @@ const black_grid_square = {
     borderWidth: 5,
     borderColor: 'black',
     borderStyle: 'solid',
-}
+}  
 
-const green_grid_squareKeyFrames = keyframes`
-    0%{
-        backgroundColor:white
+const Green_grid_squareKeyFrames = keyframes`
+    0% {
+        background-color: brown;
     }
-    50%{
-        backgroundColor:orange
+    50% {
+        background-color: orange;
     }
-    100%{
-        backgroundColor:green
+    100% {
+        background-color: green;
     }
-}
-`
-export const green_grid_square = styled.div`
-    position: "absolute",
-    width: ${CELL_WIDTH},
-    height: ${CELL_WIDTH},
-    backgroundColor: 'green',
-    borderWidth: 5,
-    borderColor: 'black',
-    borderStyle: 'solid',
-    animationName: ${green_grid_squareKeyFrames};
-    animationDuration: 2s;
-`
-    
+`;
 
+
+const Green_grid_square = styled.div`
+    position: absolute;
+    width: ${CELL_WIDTH}px;
+    height: ${CELL_WIDTH}px;
+    background-color: green;
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+    animation-name: ${Green_grid_squareKeyFrames};
+    animation-duration: 2s;
+    left: ${props => props.left}px;
+    top: ${props => props.top}px;
+`; 
+/*
+onmouseenter: ${props => props.handleMouseEnter}
+    onclick: ${props => props.handleOnClick};
+    ondrop: ${props => props.handleOnDrop};
+    ondragover: ${props => props.handleOnDragOver};
+*/
 
 export default class Cell extends React.Component {
 
@@ -72,6 +79,7 @@ export default class Cell extends React.Component {
             yCoord: this.state.yCoord,
         })
     }
+ 
 
     //Makes the cell green
     markExplored = async () => 
@@ -171,25 +179,29 @@ export default class Cell extends React.Component {
                 else if (this.state.cellColor === 'green')
                 {
                     return(
-                    <green_grid_square
-                onMouseEnter={() => this.changeColor(false)} onClick={() => this.changeColor(true)} onDrop={() => {this.handleDrop()}} onDragOver={(event) => this.onDragOver(event)} />
+                    <Green_grid_square 
+                        onMouseEnter={() => this.changeColor(false)} 
+                        onClick={() => this.changeColor(true)}
+                        onDrop={() => {this.handleDrop()}}
+                        onDragOver={(event) => this.onDragOver(event)}
+                        left={this.state.xCoord}
+                        top={this.state.yCoord}
+                    />
                     )
                 }
                 
-                    return
-                    (
-                        <div style={
-                            {
-                                ...black_grid_square,
-                                left: this.state.xCoord,
-                                top: this.state.yCoord,
-                            }
-                        }onMouseEnter={() => this.changeColor(false)} onClick={() => this.changeColor(true)} onDrop={() => {this.handleDrop()}} onDragOver={(event) => this.onDragOver(event)}>
-
+                return(
+                    <div style={
+                        {
+                            ...black_grid_square,
+                            left: this.state.xCoord,
+                            top: this.state.yCoord,
+                        }
+                    }
+                    onMouseEnter={() => this.changeColor(false)} onClick={() => this.changeColor(true)} onDrop={() => {this.handleDrop()}} onDragOver={(event) => this.onDragOver(event)}>
                     </div>
-                    )
-                
-                
+                )
+            
             }else{
                 //is end node
                 return (
