@@ -28,7 +28,7 @@ class Sort extends React.Component {
 
     render() {
         return (
-            <div>
+            <div style={{height: "500px"}}>
                 {this.state.sticks.map((stick) => <Stick color={stick.color} height={stick.height} width={stick.width} xPosition={stick.xPosition} yPosition={stick.yPosition} />)}
             </div>
         )
