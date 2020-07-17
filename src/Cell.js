@@ -30,16 +30,16 @@ const black_grid_square = {
 
 const Green_grid_squareKeyFrames = keyframes`
     0% {
-        background-color: red;
+        transform: scale(.3);
+        background-color: silver;
+        border-radius: 100%;
     }
-    25%{
-        background-color: orange;
-    }
-    75%{
-        background-color: aqua;
+    50% {
+        background-color: mint;
     }
     100% {
-        background-color: green;
+        transform: scale(1);
+        background-color: lime;
     }
 `;
 
@@ -48,12 +48,13 @@ const Green_grid_square = styled.div`
     position: absolute;
     width: ${CELL_WIDTH}px;
     height: ${CELL_WIDTH}px;
-    background-color: green;
+    background-color: lime;
     border-width: 1px;
     border-color: black;
     border-style: solid;
     animation-name: ${Green_grid_squareKeyFrames};
-    animation-duration: 1.5s;
+    animation-duration: 2s;
+    animation-timing-function: ease-out;
     left: ${props => props.left}px;
     top: ${props => props.top}px;
 `;
@@ -61,7 +62,9 @@ const Green_grid_square = styled.div`
 
 const Black_grid_squareKeyFrames = keyframes`
     0% {
-        background-color: white;
+        transform: scale(.3);
+        background-color: silver;
+        border-radius: 100%;
     }
     100% {
         background-color: black;
@@ -77,8 +80,9 @@ const Black_grid_square = styled.div`
     border-width: 1px;
     border-color: black;
     border-style: solid;
+    animation-timing-function: ease-out;
     animation-name: ${Black_grid_squareKeyFrames};
-    animation-duration: 1s;
+    animation-duration: .5s;
     left: ${props => props.left}px;
     top: ${props => props.top}px;
 `;

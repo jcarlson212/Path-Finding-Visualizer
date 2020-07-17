@@ -4,13 +4,10 @@ const CELL_WIDTH = 50;
 
 const green_grid_squareKeyFrames = keyframes`
 0% {
-    background-color: brown;
-}
-50% {
-    background-color: orange;
+    background-color: red;
 }
 100% {
-    background-color: green;
+    background-color: aqua;
 }
 `;
 
@@ -24,7 +21,7 @@ export const Green_grid_square = styled.div`
     position: absolute,
     width: ${CELL_WIDTH},
     height: ${CELL_WIDTH},
-    background-color: green,
+    background-color: aqua,
     border-width: 5,
     border-color: black,
     border-style: solid,
