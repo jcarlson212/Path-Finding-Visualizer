@@ -30,9 +30,14 @@ const black_grid_square = {
 
 const Green_grid_squareKeyFrames = keyframes`
     0% {
-        background-color: white;
+        background-color: red;
     }
-    
+    25%{
+        background-color: orange;
+    }
+    75%{
+        background-color: aqua;
+    }
     100% {
         background-color: green;
     }
@@ -48,7 +53,7 @@ const Green_grid_square = styled.div`
     border-color: black;
     border-style: solid;
     animation-name: ${Green_grid_squareKeyFrames};
-    animation-duration: 2s;
+    animation-duration: 1.5s;
     left: ${props => props.left}px;
     top: ${props => props.top}px;
 `;
@@ -73,7 +78,7 @@ const Black_grid_square = styled.div`
     border-color: black;
     border-style: solid;
     animation-name: ${Black_grid_squareKeyFrames};
-    animation-duration: 2s;
+    animation-duration: 1s;
     left: ${props => props.left}px;
     top: ${props => props.top}px;
 `;
