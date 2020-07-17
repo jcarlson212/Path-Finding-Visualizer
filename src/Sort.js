@@ -1,5 +1,6 @@
 import React from 'react';
 import Stick from './Stick';
+import SortNavigationBar, { SORT_NAVIGATION_BAR_HEIGHT } from './SortNavigationBar';
 
 const NUMBER_OF_STICKS = 1000;
 const MAX_STICK_HEIGHT = 500;
@@ -20,7 +21,7 @@ class Sort extends React.Component {
                 height: Math.floor(Math.random()*MAX_STICK_HEIGHT),
                 width: 1,
                 xPosition: i,
-                yPosition: 0
+                yPosition: SORT_NAVIGATION_BAR_HEIGHT
             })
         }
     }
@@ -28,9 +29,13 @@ class Sort extends React.Component {
 
     render() {
         return (
-            <div style={{height: "500px"}}>
-                {this.state.sticks.map((stick) => <Stick color={stick.color} height={stick.height} width={stick.width} xPosition={stick.xPosition} yPosition={stick.yPosition} />)}
+            <div>
+                <SortNavigationBar/>
+                <div style={{height: "500px"}}>
+                    {this.state.sticks.map((stick) => <Stick color={stick.color} height={stick.height} width={stick.width} xPosition={stick.xPosition} yPosition={stick.yPosition} />)}
+                </div>
             </div>
+            
         )
     }
 
