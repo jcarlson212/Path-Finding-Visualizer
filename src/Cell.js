@@ -17,7 +17,7 @@ const white_grid_square = {
     borderColor: 'black',
     borderStyle: 'solid',
 }
-  
+
 const black_grid_square = {
     position: "absolute",
     width: CELL_WIDTH,
@@ -26,15 +26,13 @@ const black_grid_square = {
     borderWidth: 5,
     borderColor: 'black',
     borderStyle: 'solid',
-}  
+}
 
 const Green_grid_squareKeyFrames = keyframes`
     0% {
-        background-color: brown;
+        background-color: white;
     }
-    50% {
-        background-color: orange;
-    }
+    
     100% {
         background-color: green;
     }
@@ -53,7 +51,34 @@ const Green_grid_square = styled.div`
     animation-duration: 2s;
     left: ${props => props.left}px;
     top: ${props => props.top}px;
-`; 
+`;
+
+
+const Black_grid_squareKeyFrames = keyframes`
+    0% {
+        background-color: white;
+    }
+    100% {
+        background-color: black;
+    }
+`;
+
+
+const Black_grid_square = styled.div`
+    position: absolute;
+    width: ${CELL_WIDTH}px;
+    height: ${CELL_WIDTH}px;
+    background-color: black;
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+    animation-name: ${Black_grid_squareKeyFrames};
+    animation-duration: 2s;
+    left: ${props => props.left}px;
+    top: ${props => props.top}px;
+`;
+
+
 /*
 onmouseenter: ${props => props.handleMouseEnter}
     onclick: ${props => props.handleOnClick};
@@ -72,18 +97,17 @@ export default class Cell extends React.Component {
     }
 
     //Makes the cell white
-    clear = ()=>{
+    clear = () => {
         this.setState({
-            cellColor:"white",
+            cellColor: "white",
             xCoord: this.state.xCoord,
             yCoord: this.state.yCoord,
         })
     }
- 
+
 
     //Makes the cell green
-    markExplored = async () => 
-    {
+    markExplored = async () => {
         await this.setState({
             ...this.state,
             cellColor: "green",
@@ -92,18 +116,18 @@ export default class Cell extends React.Component {
 
     //Handles changing from black to white and vice-versa.
     changeColor = (isAClick) => {
-        if(this.props.isMouseDown.mouseDown === true || isAClick) {
-            if(this.state.cellColor === "white"){
+        if (this.props.isMouseDown.mouseDown === true || isAClick) {
+            if (this.state.cellColor === "white") {
                 this.setState({
                     ...this.state,
                     cellColor: "black"
                 });
-            }else if(this.state.cellColor === "black"){
+            } else if (this.state.cellColor === "black") {
                 this.setState({
                     ...this.state,
                     cellColor: "white"
                 });
-            }else{
+            } else {
                 this.setState({
                     ...this.state,
                     cellColor: "white"
@@ -121,88 +145,85 @@ export default class Cell extends React.Component {
     handleDrop = () => {
         console.log("dropped")
         console.log(this.props.endNodes)
-        if(this.props.nodePressed.start_pressed){
+        if (this.props.nodePressed.start_pressed) {
             this.props.endNodes.startNode = [this.state.xCoord, this.state.yCoord]
             this.setState({
                 ...this.state,
                 isEndNode: false,
                 isStartNode: true,
             })
-            if(this.props.endNodes.start_ref !== null) {
+            if (this.props.endNodes.start_ref !== null) {
                 this.props.endNodes.start_ref.setState({
                     ...this.props.endNodes.start_ref.state,
                     isStartNode: false,
                 });
-                this.props.endNodes.start_ref = this 
-            }else{
-                this.props.endNodes.start_ref = this 
+                this.props.endNodes.start_ref = this
+            } else {
+                this.props.endNodes.start_ref = this
             }
             this.props.nodePressed.start_pressed = false
-        }else if(this.props.nodePressed.end_pressed){
+        } else if (this.props.nodePressed.end_pressed) {
             this.props.endNodes.endNode = [this.state.xCoord, this.state.yCoord]
             this.setState({
                 ...this.state,
                 isStartNode: false,
                 isEndNode: true,
             })
-            if(this.props.endNodes.end_ref !== null) {
+            if (this.props.endNodes.end_ref !== null) {
                 this.props.endNodes.end_ref.setState({
                     ...this.props.endNodes.end_ref.state,
                     isEndNode: false,
                 });
-                this.props.endNodes.end_ref = this 
-            }else{
-                this.props.endNodes.end_ref = this 
+                this.props.endNodes.end_ref = this
+            } else {
+                this.props.endNodes.end_ref = this
             }
             this.props.nodePressed.end_pressed = false
         }
     }
 
     //renders a cell based on if it is a start node, end node, and its color.
-    render(){
-        if(!this.state.isStartNode){
-            if(!this.state.isEndNode){
-                if (this.state.cellColor === 'white')
-                {
-                    return(
-                    <div style={
+    render() {
+        if (!this.state.isStartNode) {
+            if (!this.state.isEndNode) {
+                if (this.state.cellColor === 'white') {
+                    return (
+                        <div style={
                             {
                                 ...white_grid_square,
                                 left: this.state.xCoord,
                                 top: this.state.yCoord,
                             }
-                        }onMouseEnter={() => this.changeColor(false)} onClick={() => this.changeColor(true)} onDrop={() => {this.handleDrop()}} onDragOver={(event) => this.onDragOver(event)}>
+                        } onMouseEnter={() => this.changeColor(false)} onClick={() => this.changeColor(true)} onDrop={() => { this.handleDrop() }} onDragOver={(event) => this.onDragOver(event)}>
 
-                    </div>
+                        </div>
                     )
                 }
-                else if (this.state.cellColor === 'green')
-                {
-                    return(
-                    <Green_grid_square 
-                        onMouseEnter={() => this.changeColor(false)} 
-                        onClick={() => this.changeColor(true)}
-                        onDrop={() => {this.handleDrop()}}
-                        onDragOver={(event) => this.onDragOver(event)}
-                        left={this.state.xCoord}
-                        top={this.state.yCoord}
-                    />
+                else if (this.state.cellColor === 'green') {
+                    return (
+                        <Green_grid_square
+                            onMouseEnter={() => this.changeColor(false)}
+                            onClick={() => this.changeColor(true)}
+                            onDrop={() => { this.handleDrop() }}
+                            onDragOver={(event) => this.onDragOver(event)}
+                            left={this.state.xCoord}
+                            top={this.state.yCoord}
+                        />
                     )
                 }
-                
-                return(
-                    <div style={
-                        {
-                            ...black_grid_square,
-                            left: this.state.xCoord,
-                            top: this.state.yCoord,
-                        }
-                    }
-                    onMouseEnter={() => this.changeColor(false)} onClick={() => this.changeColor(true)} onDrop={() => {this.handleDrop()}} onDragOver={(event) => this.onDragOver(event)}>
-                    </div>
-                )
-            
-            }else{
+                else if (this.state.cellColor === 'black') {
+                    return (
+                        <Black_grid_square
+                            onMouseEnter={() => this.changeColor(false)}
+                            onClick={() => this.changeColor(true)}
+                            onDrop={() => { this.handleDrop() }}
+                            onDragOver={(event) => this.onDragOver(event)}
+                            left={this.state.xCoord}
+                            top={this.state.yCoord}
+                        />
+                    )
+                }
+            } else {
                 //is end node
                 return (
                     <div
@@ -212,39 +233,41 @@ export default class Cell extends React.Component {
                                 left: this.state.xCoord,
                                 top: this.state.yCoord,
                             }
-                        } 
-                        onMouseEnter={() => this.changeColor(false)} 
-                        onClick={() => this.changeColor(true)} 
-                        onDrop={() => {this.handleDrop()}} 
+                        }
+                        onMouseEnter={() => this.changeColor(false)}
+                        onClick={() => this.changeColor(true)}
+                        onDrop={() => { this.handleDrop() }}
                         onDragOver={(event) => this.onDragOver(event)}
-                        
+
                     >
                         <img src={endnode} width={CELL_WIDTH} height={CELL_WIDTH} alt="End"></img>
                     </div>
                 )
             }
-            
-        }else{
+        }
+
+
+        else {
             //is start node
             return (
-                <div 
+                <div
                     style={
                         {
                             ...white_grid_square,
                             left: this.state.xCoord,
                             top: this.state.yCoord,
                         }
-                    } 
-                    onMouseEnter={() => this.changeColor(false)} 
-                    onClick={() => this.changeColor(true)} 
-                    onDrop={() => {this.handleDrop()}} 
+                    }
+                    onMouseEnter={() => this.changeColor(false)}
+                    onClick={() => this.changeColor(true)}
+                    onDrop={() => { this.handleDrop() }}
                     onDragOver={(event) => this.onDragOver(event)}
-                    
+
                 >
                     <img src={startnode} width={CELL_WIDTH} height={CELL_WIDTH} alt="Start"></img>
                 </div>
             )
         }
-        
+
     }
 }
