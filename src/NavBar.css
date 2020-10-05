@@ -70,10 +70,12 @@ b{
   margin: 10px 10px;
   transition-duration: 0.4s;
   cursor: pointer;
+  background-color: rgb(23, 255, 23); 
+  color: black;
+
 }
 .button3:hover{
-  background-color: green; 
-  color: white;
+  text-shadow: 2px 2px;
 }
 .button4{
   transition-duration: 0.4s;
@@ -85,8 +87,10 @@ b{
   margin: 4px 2px;
   transition-duration: 0.4s;
   cursor: pointer;
+  background-color: red; 
+  color: black;
+
 }
 .button4:hover{
-  background-color: red; 
-  color: white;
+  text-shadow: 2px 2px;
 }
