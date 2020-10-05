@@ -1,4 +1,5 @@
 import React from 'react';
+import { mergeSortAlgorithm } from './SortingAlgorithms'
 
 export const SORT_NAVIGATION_BAR_HEIGHT = 100;
 
@@ -23,8 +24,9 @@ export default class SortNavigationBar extends React.Component {
         let key
         for(key in refs){
             const temp_Stick = refs[key]
-            
         }
+        mergeSortAlgorithm(refs, 0, Object.keys(refs).length-1, 15)
+
     }
 
     render() {

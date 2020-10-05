@@ -30,6 +30,7 @@ class Sort extends React.Component {
 
     componentDidMount() {
         this.state.refs = this.refs
+        console.log(this.refs)
     }
 
 
