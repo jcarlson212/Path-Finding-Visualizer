@@ -16,6 +16,20 @@ class Stick extends React.Component {
         })
     }
 
+    changeXCoord = (newXCoord) => {
+        this.setState({
+            ...this.state,
+            xPosition: newXCoord
+        })
+    }
+
+    changeYCoord = (newYCoord) => {
+        this.setState({
+            ...this.state,
+            xPosition: newYCoord
+        })
+    }
+
     render() {
         return (
             <div style={{

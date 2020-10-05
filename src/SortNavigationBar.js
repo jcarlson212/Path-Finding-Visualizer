@@ -4,8 +4,27 @@ export const SORT_NAVIGATION_BAR_HEIGHT = 100;
 
 export default class SortNavigationBar extends React.Component {
 
-    mergeSort = () => {
+    state = {
+        parentRef: {
+            refs: {
 
+            }
+        },
+    }
+
+    componentDidMount = () => {
+        console.log(this.props)
+        console.log(this.props.parent())
+        this.state.parentRef = this.props.parent()
+    }
+
+    mergeSort = () => {
+        const refs = this.state.parentRef.refs
+        let key
+        for(key in refs){
+            const temp_Stick = refs[key]
+            
+        }
     }
 
     render() {
@@ -22,7 +41,7 @@ export default class SortNavigationBar extends React.Component {
                     </h1>
                 </div>
                 <div style={{marginLeft: 5, margingRight: 5}}>
-                    <button onclick={() => { this.mergeSort()}}>
+                    <button onClick={() => { this.mergeSort()}}>
                         MergeSort
                     </button>
                 </div>
