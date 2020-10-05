@@ -67,7 +67,7 @@ b{
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin: 10px 10px;
+  margin: 2px 4px;
   transition-duration: 0.4s;
   cursor: pointer;
   background-color: rgb(0, 255, 0); 
@@ -80,7 +80,7 @@ color: white;
 background-color: green;
 }
 .button3:active{
-  background-color: #3e8e41;
+  background-color: green;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
@@ -91,20 +91,21 @@ background-color: green;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin: 4px 2px;
+  margin: 2px 4px;
   transition-duration: 0.4s;
   cursor: pointer;
-  background-color: rgb(197, 46, 46); 
+  background-color: red; 
   color: black;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 
 }
 .button4:hover{
   cursor: pointer;
   color: white;
-  background-color: red;
+  background-color: rgb(139, 0, 0);
 }
 .button4:active{
-    background-color: #3e8e41;
+    background-color: red;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
   }
