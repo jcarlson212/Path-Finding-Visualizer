@@ -25,7 +25,7 @@ export default class SortNavigationBar extends React.Component {
         for(key in refs){
             const temp_Stick = refs[key]
         }
-        mergeSortAlgorithm(refs, 0, Object.keys(refs).length-1, 15)
+        mergeSortAlgorithm(refs, 0, Object.keys(refs).length-1, .4)
 
     }
 
