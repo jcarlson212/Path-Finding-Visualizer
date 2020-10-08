@@ -2,7 +2,11 @@ import { hashCoord } from './GridHelperFunctions';
 import { Queue, Stack, PriorityQueue } from './DataStructures';
 import { CELL_WIDTH } from './Cell';
 
-export const mergeSortAlgorithm = (refs, start, end, speed) => {
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+export const mergeSortAlgorithm = async (refs, start, end, speed) => {
     //refs[start].changeColor("green")
     if(start === end){
         return;
@@ -17,18 +21,16 @@ export const mergeSortAlgorithm = (refs, start, end, speed) => {
 
     const mid = Math.floor((start + end) / 2)
 
-
-    mergeSortAlgorithm(refs, start, mid, speed)
-    setTimeout(() => {}, speed);
-    mergeSortAlgorithm(refs, mid+1, end, speed)
-    setTimeout(() => {}, speed);
-    merge(refs, start, mid, mid+1, end, speed)
-    setTimeout(() => {}, speed);
-    console.log("g")
+    await mergeSortAlgorithm(refs, start, mid, speed)
+    await sleep(speed);
+    await mergeSortAlgorithm(refs, mid+1, end, speed)
+    await sleep(speed);
+    await merge(refs, start, mid, mid+1, end, speed)
+    await sleep(speed);
 
 }
 
-const merge = (refs, start1, end1, start2, end2, speed) => {
+const merge = async (refs, start1, end1, start2, end2, speed) => {
     console.log(start1, end2)
     let tempArr = []
     let current1 = start1
