@@ -1,13 +1,12 @@
 
 
 a{
-  font-size: 32px;
+  font-size: 10px;
   line-height: 1;
-  height: 50px;
-  font-weight: 100;
+  height: 30px;
+  font-weight: 50;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   color:white;
-  padding: 10px;
 }
 b{
   font-size:15px;

@@ -10,7 +10,7 @@ export default class SortNavigationBar extends React.Component {
 
     state = {
         sort: "sort",
-
+        sortSpeed: "Slow",
         parentRef: {
             refs: {
 
@@ -54,7 +54,7 @@ export default class SortNavigationBar extends React.Component {
             //state is bubble
         }
         else {
-            console.log("state is quickly sorting xd")
+            console.log("state is quickly sorting")
             //state is quick
         }
 
@@ -85,6 +85,20 @@ export default class SortNavigationBar extends React.Component {
                         <option value="Merge Sort" style={{ color: "black" }}>Merge Sort</option>
                         <option value="Bubble Sort" style={{ color: "black" }}>Bubble Sort</option>
                         <option value="Quick Sort" style={{ color: "black" }}>Quick Sort</option>
+                    </select>
+
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <select value={this.state.sortSpeed} onChange={(event) => {
+                        this.setState({
+                            ...this.state,
+                            sortSpeed: event.target.value
+                        })
+                    }}>
+                        <option disabled selected style="Speed" style={{ color: "black" }}>Speed</option>
+                        <option value="Slow" style={{ color: "black" }}>Slow</option>
+                        <option value="Medium" style={{ color: "black" }}>Medium</option>
+                        <option value="Fast" style={{ color: "black" }}>Fast</option>
+                        <option value="Ultra" style={{ color: "black" }}>Ultra</option>
                     </select>
 
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="button beginSort" onClick={() => { this.beginSort() }}>Begin Sort</button>

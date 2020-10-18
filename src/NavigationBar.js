@@ -25,8 +25,8 @@ import { CELL_WIDTH } from './Cell';
 export const NAVAGATION_BAR_HEIGHT = 100;
 
 export class NavigationBar extends React.Component {
-    
-    state={
+
+    state = {
         isDragging: false,
 
         originalX: 0,
@@ -37,7 +37,7 @@ export class NavigationBar extends React.Component {
 
         lastTranslateX: 0,
         lastTranslateY: 0,
-        algorithm: "algorithm", 
+        algorithm: "algorithm",
         speed: "Medium",
     }
 
@@ -45,15 +45,15 @@ export class NavigationBar extends React.Component {
         super(props);
     }
 
-    clearBoard=()=>{
-        for(let i = 0; i < CELLS_PER_ROW; ++i){
-            for(let j =0; j < CELLS_PER_COL; ++j) {
-                let xCoord= 50*i
-                let yCoord= 50*j + NAVAGATION_BAR_HEIGHT
-                if (this.props.grid_map.refs[hashCoord(xCoord,yCoord)] !== undefined){
-                    this.props.grid_map.refs[hashCoord(xCoord,yCoord)].clear()
+    clearBoard = () => {
+        for (let i = 0; i < CELLS_PER_ROW; ++i) {
+            for (let j = 0; j < CELLS_PER_COL; ++j) {
+                let xCoord = 50 * i
+                let yCoord = 50 * j + NAVAGATION_BAR_HEIGHT
+                if (this.props.grid_map.refs[hashCoord(xCoord, yCoord)] !== undefined) {
+                    this.props.grid_map.refs[hashCoord(xCoord, yCoord)].clear()
                 }
-            }           
+            }
         }
     }
 
@@ -69,91 +69,96 @@ export class NavigationBar extends React.Component {
         this.props.nodePressed.start_pressed = false
     }
 
-    run = () => 
-    {
+    run = () => {
         console.log(this.state.speed);
-        if(this.state.speed === "Medium" || this.state.speed === "Speed" ){
-            if(this.state.algorithm === "A*") {
+        if (this.state.speed === "Medium" || this.state.speed === "Speed") {
+            if (this.state.algorithm === "A*") {
                 AStarSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, NORMAL)
-            }else if(this.state.algorithm === "DFS"){
+            } else if (this.state.algorithm === "DFS") {
                 depthFirstSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, NORMAL)
-            }else{
+            } else {
                 breadthFirstSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, NORMAL)
             }
-        }else if(this.state.speed === "Fast") {
-            if(this.state.algorithm === "A*") {
+        } else if (this.state.speed === "Fast") {
+            if (this.state.algorithm === "A*") {
                 AStarSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, FAST)
-            }else if(this.state.algorithm === "DFS"){
+            } else if (this.state.algorithm === "DFS") {
                 depthFirstSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, FAST)
-            }else{
+            } else {
                 breadthFirstSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, FAST)
             }
-        }else if(this.state.speed === "Slow"){
-            if(this.state.algorithm === "A*") {
+        } else if (this.state.speed === "Slow") {
+            if (this.state.algorithm === "A*") {
                 AStarSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, SLOW)
-            }else if(this.state.algorithm === "DFS"){
+            } else if (this.state.algorithm === "DFS") {
                 depthFirstSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, SLOW)
-            }else{
+            } else {
                 breadthFirstSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, SLOW)
             }
-        }else{
-            if(this.state.algorithm === "A*") {
+        } else {
+            if (this.state.algorithm === "A*") {
                 AStarSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, ULTRA)
-            }else if(this.state.algorithm === "DFS"){
+            } else if (this.state.algorithm === "DFS") {
                 depthFirstSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, ULTRA)
-            }else{
+            } else {
                 breadthFirstSearch(this.props.grid_map.refs, this.props.endPoints.startNode, this.props.endPoints.endNode, ULTRA)
             }
         }
     }
-        
+
     render() {
-        return(
-            <div style={{ 
-                width: '213%', 
+        return (
+            <div style={{
                 height: NAVAGATION_BAR_HEIGHT,
+                display: "flex",
                 backgroundColor: "rgb(23,213,213)",
+                flexDirection: "row",
+                alignItems: "center"
             }}>
-            <div>
-                <a>Path Finding Visualizer</a>
-            </div>
-            <br/>          
-            <select value={this.state.algorithm} onChange={(event) => {
-                this.setState({
-                    ...this.state,
-                    algorithm: event.target.value
-                })
-            }}>
-                
-                <option disabled selected style="Algorithm" style={{color: "black"}}>Algorithm</option>
-                <option value="A*" style={{color: "black"}}>A*</option>
-                <option value="DFS" style={{color: "black"}}>DFS</option>
-                <option value="BFS" style={{color: "black"}}>BFS</option>
-            </select>
+
+                <div style={{ marginLeft: 5, margingRight: 5 }}>
+                    <a>
+                        Path Finding Visualizer
+                    </a>
+                   
+                    <select value={this.state.algorithm} onChange={(event) => {
+                        this.setState({
+                            ...this.state,
+                            algorithm: event.target.value
+                        })
+                    }}>
+
+                        <option disabled selected style="Algorithm" style={{ color: "black" }}>Algorithm</option>
+                        <option value="A*" style={{ color: "black" }}>A*</option>
+                        <option value="DFS" style={{ color: "black" }}>DFS</option>
+                        <option value="BFS" style={{ color: "black" }}>BFS</option>
+                    </select>
             &nbsp;&nbsp;&nbsp;
 
             <select value={this.state.speed} onChange={(event) => {
-                this.setState({
-                    ...this.state,
-                    speed: event.target.value
-                })
-            }}>
-                <option disabled selected style="Speed" style={{color: "black"}}>Speed</option>
-                <option value="Slow" style={{color: "black"}}>Slow</option>
-                <option value="Medium" style={{color: "black"}}>Medium</option>
-                <option value="Fast" style={{color: "black"}}>Fast</option>
-                <option value="Ultra" style={{color: "black"}}>Ultra</option>
-            </select>
+                        this.setState({
+                            ...this.state,
+                            speed: event.target.value
+                        })
+                    }}>
+                        <option disabled selected style="Speed" style={{ color: "black" }}>Speed</option>
+                        <option value="Slow" style={{ color: "black" }}>Slow</option>
+                        <option value="Medium" style={{ color: "black" }}>Medium</option>
+                        <option value="Fast" style={{ color: "black" }}>Fast</option>
+                        <option value="Ultra" style={{ color: "black" }}>Ultra</option>
+                    </select>
 
-            &nbsp;&nbsp;&nbsp;<b>Drag to starting position:&nbsp;&nbsp;<button class="button button1" draggable={true} onDragStart={() => { this.startNodePressed()}} ><img src={startnode} width="30" height="30"></img></button>
-            &nbsp;&nbsp;&nbsp;Drag to ending position:&nbsp;&nbsp;<button class="button button2" draggable={true} onDragStart={() => { this.endNodePressed() }}><img src={endnode}width="40"height="30"/></button></b>
+            &nbsp;&nbsp;&nbsp;<b>Drag to starting position:&nbsp;&nbsp;<button class="button button1" draggable={true} onDragStart={() => { this.startNodePressed() }} ><img src={startnode} width="30" height="30"></img></button>
+            &nbsp;&nbsp;&nbsp;Drag to ending position:&nbsp;&nbsp;<button class="button button2" draggable={true} onDragStart={() => { this.endNodePressed() }}><img src={endnode} width="40" height="30" /></button></b>
 
 
-            &nbsp;&nbsp;&nbsp;<button class="button button3" onClick={() => { this.run() } }>Run</button>
+            &nbsp;&nbsp;&nbsp;<button class="button button3" onClick={() => { this.run() }}>Run</button>
             &nbsp;&nbsp;&nbsp;<button class="button button4" onClick={() => { this.clearBoard() }}>Clear Board</button>
 
+            </div>
+                <br />
 
-        </div>
-    );
+            </div>
+        );
     }
 }
