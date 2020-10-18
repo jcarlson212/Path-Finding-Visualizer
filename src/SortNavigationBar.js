@@ -26,12 +26,12 @@ export default class SortNavigationBar extends React.Component {
 
     mergeSort = () => {
         const refs = this.state.parentRef.refs
-        mergeSortAlgorithm(refs, 0, Object.keys(refs).length - 1, 15)
+        mergeSortAlgorithm(refs, 0, Object.keys(refs).length - 1, 0)
     }
 
     radixSort = () => {
         const refs = this.state.parentRef.refs
-        radixSortAlgorithm(refs, 0, Object.keys(refs).length - 1, 15, 9)
+        radixSortAlgorithm(refs, 0, Object.keys(refs).length - 1, 0, 9)
     }
 
 
