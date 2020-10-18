@@ -69,7 +69,8 @@ export class NavigationBar extends React.Component {
         this.props.nodePressed.start_pressed = false
     }
 
-    run = () => {
+    run = () => 
+    {
         console.log(this.state.speed);
         if(this.state.speed === "Medium" || this.state.speed === "Speed" ){
             if(this.state.algorithm === "A*") {
@@ -123,7 +124,8 @@ export class NavigationBar extends React.Component {
                     algorithm: event.target.value
                 })
             }}>
-                <option value="Algorithm" style={{color: "black"}}>Algorithm</option>
+                
+                <option disabled selected style="Algorithm" style={{color: "black"}}>Algorithm</option>
                 <option value="A*" style={{color: "black"}}>A*</option>
                 <option value="DFS" style={{color: "black"}}>DFS</option>
                 <option value="BFS" style={{color: "black"}}>BFS</option>
@@ -136,7 +138,7 @@ export class NavigationBar extends React.Component {
                     speed: event.target.value
                 })
             }}>
-                <option value="Speed" style={{color: "black"}}>Speed</option>
+                <option disabled selected style="Speed" style={{color: "black"}}>Speed</option>
                 <option value="Slow" style={{color: "black"}}>Slow</option>
                 <option value="Medium" style={{color: "black"}}>Medium</option>
                 <option value="Fast" style={{color: "black"}}>Fast</option>
