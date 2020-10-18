@@ -7,6 +7,11 @@ function sleep(ms) {
 }
 
 export const radixSortAlgorithm = async (refs, start, end, speed, largest_bit) => {
+    const audio = new Audio("http://codeskulptor-demos.commondatastorage.googleapis.com/GalaxyInvaders/theme_01.mp3");
+    audio.play()
+    audio.loop = true
+
+
     let buckets = {
         '0': [],
         '1': [],
@@ -46,9 +51,9 @@ export const radixSortAlgorithm = async (refs, start, end, speed, largest_bit) =
 
         buckets["0"] = []
         buckets["1"] = []
-
-
     }
+
+    audio.pause()
 }
 
 export const mergeSortAlgorithm = async (refs, start, end, speed) => {
