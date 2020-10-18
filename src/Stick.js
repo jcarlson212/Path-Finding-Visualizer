@@ -5,8 +5,6 @@ class Stick extends React.Component {
         height: this.props.height,
         width: this.props.width,
         color: this.props.color,
-        xPosition: this.props.xPosition,
-        yPosition: this.props.yPosition
     }
 
     changeHeight = (newHeight) => {
@@ -39,19 +37,12 @@ class Stick extends React.Component {
 
     render() {
         return (
-            <div>
-                <div style={{
-                    height: this.state.height,
-                    width: this.state.width,
-                    backgroundColor: this.state.color,
-                    position: "absolute",
-                    left: this.state.xPosition,
-                    top: this.state.yPosition
-                }}>
-
-                </div>
+            <div style={{
+                height: this.state.height,
+                width: ((this.state.width.toString()) + "%"),
+                backgroundColor: this.state.color,
+            }}>
             </div>
-            
         )
     }
 

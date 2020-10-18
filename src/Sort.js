@@ -3,8 +3,8 @@ import Stick from './Stick';
 import SortNavigationBar, { SORT_NAVIGATION_BAR_HEIGHT } from './SortNavigationBar';
 import { hashCoord } from './GridHelperFunctions';
 
-const NUMBER_OF_STICKS = 1000;
-const MAX_STICK_HEIGHT = 500;
+const NUMBER_OF_STICKS = 500;
+const MAX_STICK_HEIGHT = 800;
 
 class Sort extends React.Component {
     state = {
@@ -21,7 +21,7 @@ class Sort extends React.Component {
             this.state.sticks.push({
                 color: "black",
                 height: Math.floor(Math.random()*MAX_STICK_HEIGHT),
-                width: 1,
+                width: (1 / NUMBER_OF_STICKS)*100,
                 xPosition: i,
                 yPosition: SORT_NAVIGATION_BAR_HEIGHT
             })
@@ -38,7 +38,7 @@ class Sort extends React.Component {
         return (
             <div>
                 <SortNavigationBar hello={2} parent={() => this} />
-                <div style={{height: "500px"}}>
+                <div style={{height: MAX_STICK_HEIGHT, display: "flex"}}>
                     {this.state.sticks.map((stick, index) => <Stick color={stick.color} height={stick.height} width={stick.width} xPosition={stick.xPosition} yPosition={stick.yPosition} ref={index.toString()} key={index} />)}
                 </div>
             </div>

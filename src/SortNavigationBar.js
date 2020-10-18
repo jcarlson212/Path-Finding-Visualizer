@@ -9,7 +9,7 @@ export const SORT_NAVIGATION_BAR_HEIGHT = 100;
 export default class SortNavigationBar extends React.Component {
 
     state = {
-        sort: "sort",
+        sort: "Merge Sort",
         sortSpeed: "Slow",
         parentRef: {
             refs: {
@@ -26,10 +26,6 @@ export default class SortNavigationBar extends React.Component {
 
     mergeSort = () => {
         const refs = this.state.parentRef.refs
-        let key
-        for (key in refs) {
-            const temp_Stick = refs[key]
-        }
         mergeSortAlgorithm(refs, 0, Object.keys(refs).length - 1, 15)
     }
 
@@ -48,6 +44,7 @@ export default class SortNavigationBar extends React.Component {
         if (this.state.sort === "Merge Sort") {
             console.log("state is merge")
             //state is merge
+            this.mergeSort()
         }
         else if (this.state.sort === "Bubble Sort") {
             console.log("state is bubbly")

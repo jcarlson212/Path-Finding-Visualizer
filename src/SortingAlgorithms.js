@@ -7,14 +7,23 @@ function sleep(ms) {
 }
 
 export const mergeSortAlgorithm = async (refs, start, end, speed) => {
-    //refs[start].changeColor("green")
-    if (start === end) {
+    let audio;
+    if(start === 0 && end === Object.keys(refs).length - 1){
+        audio = new Audio("http://codeskulptor-demos.commondatastorage.googleapis.com/GalaxyInvaders/theme_01.mp3");
+        audio.play()
+        audio.loop = true
+    }
+    
+    if(start >= end){
         return;
-    } else if (start === (end - 1)) {
-        if (refs[start].props.height > refs[end].props.height) {
-            const temp = refs[start].props.height
-            refs[start].changeHeight(refs[end].props.height)
+    }else if(start === (end - 1)){
+        if(refs[start].state.height > refs[end].state.height){
+            const temp = refs[start].state.height
+            const temp2 = refs[end].state.height
+            refs[start].changeHeight(temp2)
+            await sleep(speed);
             refs[end].changeHeight(temp)
+            await sleep(speed);
         }
         return;
     }
@@ -22,45 +31,45 @@ export const mergeSortAlgorithm = async (refs, start, end, speed) => {
     const mid = Math.floor((start + end) / 2)
 
     await mergeSortAlgorithm(refs, start, mid, speed)
-    await sleep(speed);
-    await mergeSortAlgorithm(refs, mid + 1, end, speed)
-    await sleep(speed);
-    await merge(refs, start, mid, mid + 1, end, speed)
-    await sleep(speed);
+    await mergeSortAlgorithm(refs, mid+1, end, speed)
+    await merge(refs, start, mid, mid+1, end, speed)
 
+    if(start === 0 && end === Object.keys(refs).length - 1){
+        audio.pause()
+    }
 }
 
-
-
-
 const merge = async (refs, start1, end1, start2, end2, speed) => {
-    console.log(start1, end2)
     let tempArr = []
     let current1 = start1
     let current2 = start2
-    while (current1 <= end1 && current2 <= end2) {
-        if (refs[current1].props.height <= refs[current2].props.height) {
-            tempArr.push(refs[current1].props.height)
+    while(current1 <= end1 && current2 <= end2){
+        if(refs[current1].state.height <= refs[current2].state.height){
+            const val = refs[current1].state.height;
+            tempArr.push(val)
             current1++
-        } else {
-            tempArr.push(refs[current2].props.height)
+        }else{
+            const val = refs[current2].state.height;
+            tempArr.push(val)
             current2++
         }
     }
 
-    while (current1 <= end1) {
-        tempArr.push(refs[current1].props.height)
+    while(current1 <= end1){
+        tempArr.push(refs[current1].state.height)
         current1++
     }
-    while (current2 <= end2) {
-        tempArr.push(refs[current2].props.height)
+    while(current2 <= end2){
+        tempArr.push(refs[current2].state.height)
         current2++
     }
 
-    //tempArr.forEach(v => console.log(v))
-    tempArr.sort()
-    for (let i = start1; i <= end2; i++) {
-        refs[i].changeHeight(tempArr[i - start1])
+    for(let i = start1; i <= end2; i++){
+        refs[i].changeHeight(tempArr[(i - start1)])
+        refs[i].changeColor("red")
+        await sleep(speed);
+        refs[i].changeColor("black")
+        await sleep(speed);
     }
 }
 /*
