@@ -1,5 +1,5 @@
 import React from 'react';
-import { mergeSortAlgorithm } from './SortingAlgorithms'
+import { mergeSortAlgorithm, radixSortAlgorithm } from './SortingAlgorithms'
 import './NavBarSort.css';
 
 export const SORT_NAVIGATION_BAR_HEIGHT = 100;
@@ -29,6 +29,10 @@ export default class SortNavigationBar extends React.Component {
         mergeSortAlgorithm(refs, 0, Object.keys(refs).length - 1, 15)
     }
 
+    radixSort = () => {
+        const refs = this.state.parentRef.refs
+        radixSortAlgorithm(refs, 0, Object.keys(refs).length - 1, 15, 9)
+    }
 
 
     /*          <div style={{ marginLeft: 5, margingRight: 5 }}>
@@ -49,6 +53,8 @@ export default class SortNavigationBar extends React.Component {
         else if (this.state.sort === "Bubble Sort") {
             console.log("state is bubbly")
             //state is bubble
+        }else if (this.state.sort === "Radix Sort"){
+            this.radixSort()
         }
         else {
             console.log("state is quickly sorting")
@@ -81,6 +87,7 @@ export default class SortNavigationBar extends React.Component {
                         <option disabled selected style="Select Algo" style={{ color: "black" }}>Select Algo</option>
                         <option value="Merge Sort" style={{ color: "black" }}>Merge Sort</option>
                         <option value="Bubble Sort" style={{ color: "black" }}>Bubble Sort</option>
+                        <option value="Radix Sort" style={{ color: "black" }}>Radix Sort</option>
                         <option value="Quick Sort" style={{ color: "black" }}>Quick Sort</option>
                     </select>
 

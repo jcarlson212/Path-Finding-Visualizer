@@ -6,6 +6,51 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+export const radixSortAlgorithm = async (refs, start, end, speed, largest_bit) => {
+    let buckets = {
+        '0': [],
+        '1': [],
+    }
+
+    let i;
+    for(i = 0; i <= largest_bit; i++){
+        let j =start
+        while(j <= end){
+            if((refs[j].state.height >> i) & 1 === 1){
+                buckets["1"].push(refs[j].state.height)
+            }else{
+                buckets["0"].push(refs[j].state.height)
+            }
+            j++;
+        }
+
+        j = start
+        let bucket0_index = 0
+        let bucket1_index = 0
+        while(j <= end){
+            if(bucket0_index < buckets["0"].length){
+                refs[j].changeHeight(buckets["0"][bucket0_index])
+                bucket0_index++
+                refs[j].changeColor("red")
+                await sleep(speed);
+                refs[j].changeColor("black")
+            }else{
+                refs[j].changeHeight(buckets["1"][bucket1_index])
+                bucket1_index++
+                refs[j].changeColor("red")
+                await sleep(speed);
+                refs[j].changeColor("black")
+            }
+            j++;
+        }
+
+        buckets["0"] = []
+        buckets["1"] = []
+
+
+    }
+}
+
 export const mergeSortAlgorithm = async (refs, start, end, speed) => {
     let audio;
     if(start === 0 && end === Object.keys(refs).length - 1){
