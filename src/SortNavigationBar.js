@@ -69,6 +69,12 @@ export default class SortNavigationBar extends React.Component {
 
     }
 
+    backScreen = () => {
+        this.setState({
+          ...this.state,
+          screen: (this.state.screen === "sort") ? "sort" : "search"
+        })
+      }
 
     render() {
         return (
@@ -112,6 +118,7 @@ export default class SortNavigationBar extends React.Component {
                     </select>
 
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="button beginSort" onClick={() => { this.beginSort() }}>Begin Sort</button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="button backScreen" onClick={() => { this.backScreen() }}>Sorting Algorithms</button>
 
                 </div>
                 <br />

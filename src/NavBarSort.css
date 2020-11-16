@@ -32,3 +32,28 @@ a{
     box-shadow: 0 5px #666;
     transform: translateY(4px);
   }
+
+  .backScreen{
+    transition-duration: 0.4s;
+    padding: 2px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 2px 4px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    background-color: purple; 
+    color: black;
+  
+  }
+  .backScreen:hover{
+    cursor: pointer;
+  color: white;
+  background-color: purple;
+  }
+  .backScreen:active{
+    background-color: purple;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
