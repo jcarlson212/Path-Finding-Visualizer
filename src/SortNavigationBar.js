@@ -1,5 +1,5 @@
 import React from 'react';
-import { mergeSortAlgorithm, radixSortAlgorithm } from './SortingAlgorithms'
+import { mergeSortAlgorithm, radixSortAlgorithm, quickSortAlgorithm } from './SortingAlgorithms'
 import './NavBarSort.css';
 
 export const SORT_NAVIGATION_BAR_HEIGHT = 100;
@@ -34,6 +34,11 @@ export default class SortNavigationBar extends React.Component {
         radixSortAlgorithm(refs, 0, Object.keys(refs).length - 1, 0, 9)
     }
 
+    quickSort = () => {
+        const refs = this.state.parentRef.refs
+        quickSortAlgorithm(refs, 0, Object.keys(refs).length - 1, 0)
+    }
+
 
     /*          <div style={{ marginLeft: 5, margingRight: 5 }}>
   <button onClick={() => { this.mergeSort() }}>
@@ -59,6 +64,7 @@ export default class SortNavigationBar extends React.Component {
         else {
             console.log("state is quickly sorting")
             //state is quick
+            this.quickSort()
         }
 
     }

@@ -2,6 +2,10 @@ import { hashCoord } from './GridHelperFunctions';
 import { Queue, Stack, PriorityQueue } from './DataStructures';
 import { CELL_WIDTH } from './Cell';
 
+function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+}
+
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -122,6 +126,75 @@ const merge = async (refs, start1, end1, start2, end2, speed) => {
         await sleep(speed);
     }
 }
+
+export const quickSortAlgorithm = async (refs, start, end, speed) => {
+    let audio;
+    if(start === 0 && end === Object.keys(refs).length - 1){
+        audio = new Audio("http://codeskulptor-demos.commondatastorage.googleapis.com/GalaxyInvaders/theme_01.mp3");
+        audio.play()
+        audio.loop = true
+    }
+
+    if(start >= end){
+        return;
+    }else if(start === (end - 1)){
+        if(refs[start].state.height > refs[end].state.height){
+            const temp = refs[start].state.height
+            const temp2 = refs[end].state.height
+            refs[start].changeHeight(temp2)
+            await sleep(speed);
+            refs[end].changeHeight(temp)
+            await sleep(speed);
+        }
+        return;
+    }
+
+    const pivot_index = getRandomInt(end - start+1) + start
+    const pivot_height = refs[pivot_index].state.height
+    const left_bucket = []
+    const right_bucket = []
+    let i;
+    for(i=start; i <= end; i++){
+        if(i != pivot_index){
+            if(refs[i].state.height <= refs[pivot_index].state.height){
+                left_bucket.push(refs[i].state.height)
+            }else{
+                right_bucket.push(refs[i].state.height)
+            }
+        }
+    }
+    //SortingAlgorithms.js:167 0 499 135 364 130
+    console.log(start, end, left_bucket.length, right_bucket.length, pivot_index)
+    for(let i = start; i <= start + left_bucket.length-1; i++){
+        refs[i].changeHeight(left_bucket[i-start])
+        refs[i].changeColor("red")
+        await sleep(speed);
+        refs[i].changeColor("black")
+        await sleep(speed);
+    }
+    
+    refs[start+left_bucket.length].changeHeight(pivot_height)
+    refs[start+left_bucket.length].changeColor("red")
+    await sleep(speed);
+    refs[start+left_bucket.length].changeColor("black")
+    await sleep(speed);
+    for(let i = start+left_bucket.length+1; i <= end; i++){
+        refs[i].changeHeight(right_bucket[i-(start +left_bucket.length+1)])
+        refs[i].changeColor("red")
+        await sleep(speed);
+        refs[i].changeColor("black")
+        await sleep(speed);
+    }
+
+
+    await quickSortAlgorithm(refs, start, start+left_bucket.length-1, speed)
+    await quickSortAlgorithm(refs, start+left_bucket.length+1, end, speed)
+
+    if(start === 0 && end === Object.keys(refs).length - 1){
+        audio.pause()
+    }
+}
+
 /*
 export const bubbleSortAlgo = async (z, zz) => {
     if (z === zz) {
