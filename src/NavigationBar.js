@@ -9,6 +9,7 @@ import { breadthFirstSearch, AStarSearch, depthFirstSearch } from "./SearchAlgor
 import { NORMAL, FAST, SLOW, ULTRA } from './Constants';
 import { CELL_WIDTH } from './Cell';
 
+
 //There needs to be 
 //1) A drop down list of algorithms
 //2) A button called Run to run the selected algorithm 
@@ -28,6 +29,7 @@ export class NavigationBar extends React.Component {
 
     state = {
         isDragging: false,
+        screen: "search",
 
         originalX: 0,
         originalY: 0,
@@ -40,7 +42,9 @@ export class NavigationBar extends React.Component {
         algorithm: "algorithm",
         speed: "Medium",
     }
+    componentDidMount(){
 
+    }
     constructor(props) {
         super(props);
     }
@@ -56,6 +60,13 @@ export class NavigationBar extends React.Component {
             }
         }
     }
+
+    changeScreen = () => {
+        this.setState({
+          ...this.state,
+          screen: (this.state.screen === "search") ? "sort" : "search"
+        })
+      }
 
     startNodePressed = () => {
         console.log("start node pressed")
@@ -154,6 +165,7 @@ export class NavigationBar extends React.Component {
 
             &nbsp;&nbsp;&nbsp;<button class="button button3" onClick={() => { this.run() }}>Run</button>
             &nbsp;&nbsp;&nbsp;<button class="button button4" onClick={() => { this.clearBoard() }}>Clear Board</button>
+            &nbsp;&nbsp;&nbsp;<button class="button button5" onClick={() => { this.changeScreen() }}>Sorting Algorithms</button>
 
             </div>
                 <br />

@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Search from './Search'
+import Search from './Search';
 import Sort from './Sort';
 import Cell, { CELL_WIDTH } from './Cell';
 import { NavigationBar, NAVAGATION_BAR_HEIGHT } from './NavigationBar';
