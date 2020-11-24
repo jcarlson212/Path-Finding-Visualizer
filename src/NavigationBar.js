@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Button from 'react-bootstrap/Button';
 import startnode from "./images/startnode.png";
 import endnode from "./images/endnode.png";
 import './NavBar.css';
@@ -163,9 +164,9 @@ export class NavigationBar extends React.Component {
             &nbsp;&nbsp;&nbsp;Drag to ending position:&nbsp;&nbsp;<button class="button button2" draggable={true} onDragStart={() => { this.endNodePressed() }}><img src={endnode} width="40" height="30" /></button></b>
 
 
-            &nbsp;&nbsp;&nbsp;<button class="button button3" onClick={() => { this.run() }}>Run</button>
-            &nbsp;&nbsp;&nbsp;<button class="button button4" onClick={() => { this.clearBoard() }}>Clear Board</button>
-            &nbsp;&nbsp;&nbsp;<button class="button button5" onClick={() => { this.changeScreen() }}>Sorting Algorithms</button>
+            &nbsp;&nbsp;&nbsp;<Button variant="dark" onClick={() => { this.run() }}>Run</Button>
+            &nbsp;&nbsp;&nbsp;<Button variant="dark" onClick={() => { this.clearBoard() }}>Clear Board</Button>
+            &nbsp;&nbsp;&nbsp;<Button variant="dark" onClick={() => { this.changeScreen() }}>Sorting Algorithms</Button>
 
             </div>
                 <br />
