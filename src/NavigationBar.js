@@ -1,6 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Button from 'react-bootstrap/Button';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import Nav from 'react-bootstrap/Nav';
+import Form from 'react-bootstrap/Form';
+import FormControl from 'react-bootstrap/FormControl';
 import startnode from "./images/startnode.png";
 import endnode from "./images/endnode.png";
 import './NavBar.css';
@@ -9,6 +14,8 @@ import { hashCoord } from "./GridHelperFunctions";
 import { breadthFirstSearch, AStarSearch, depthFirstSearch } from "./SearchAlgorithms";
 import { NORMAL, FAST, SLOW, ULTRA } from './Constants';
 import { CELL_WIDTH } from './Cell';
+
+
 
 
 //There needs to be 
@@ -24,10 +31,12 @@ import { CELL_WIDTH } from './Cell';
 // can do nothing at the moment. I am thinking like a green dot in the middle of a 50x50 square
 //6) similar a red node (a red dot)
 //7) After all of this (or before doing this) you can also do the animation of the cells changing color
+
+
 export const NAVAGATION_BAR_HEIGHT = 100;
 
-export class NavigationBar extends React.Component {
-
+export class NavigationBar extends React.Component{
+    
     state = {
         isDragging: false,
         screen: "search",
@@ -118,60 +127,41 @@ export class NavigationBar extends React.Component {
         }
     }
 
-    render() {
-        return (
-            <div style={{
-                height: NAVAGATION_BAR_HEIGHT,
-                display: "flex",
-                backgroundColor: "rgb(23,213,213)",
-                flexDirection: "row",
-                alignItems: "center"
-            }}>
+render()
+{
+    return(
+        <Navbar bg="light" expand="lg">
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+    <Nav className="testing">
+    <Navbar.Brand className="testing2" href="#home">Path Finding Visualizer</Navbar.Brand>
+      <NavDropdown title="Algorithm" id="basic-nav-dropdown">
+        <NavDropdown.Item href="#action/3.1">A*</NavDropdown.Item>
+        <NavDropdown.Item href="#action/3.2">DFS action</NavDropdown.Item>
+        <NavDropdown.Item href="#action/3.3">BFS</NavDropdown.Item>
+    
 
-                <div style={{ marginLeft: 5, margingRight: 5 }}>
-                    <a>
-                        Path Finding Visualizer
-                    </a>
-                   
-                    <select value={this.state.algorithm} onChange={(event) => {
-                        this.setState({
-                            ...this.state,
-                            algorithm: event.target.value
-                        })
-                    }}>
-
-                        <option disabled selected style="Algorithm" style={{ color: "black" }}>Algorithm</option>
-                        <option value="A*" style={{ color: "black" }}>A*</option>
-                        <option value="DFS" style={{ color: "black" }}>DFS</option>
-                        <option value="BFS" style={{ color: "black" }}>BFS</option>
-                    </select>
-            &nbsp;&nbsp;&nbsp;
-
-            <select value={this.state.speed} onChange={(event) => {
-                        this.setState({
-                            ...this.state,
-                            speed: event.target.value
-                        })
-                    }}>
-                        <option disabled selected style="Speed" style={{ color: "black" }}>Speed</option>
-                        <option value="Slow" style={{ color: "black" }}>Slow</option>
-                        <option value="Medium" style={{ color: "black" }}>Medium</option>
-                        <option value="Fast" style={{ color: "black" }}>Fast</option>
-                        <option value="Ultra" style={{ color: "black" }}>Ultra</option>
-                    </select>
-
-            &nbsp;&nbsp;&nbsp;<b>Drag to starting position:&nbsp;&nbsp;<button class="button button1" draggable={true} onDragStart={() => { this.startNodePressed() }} ><img src={startnode} width="30" height="30"></img></button>
-            &nbsp;&nbsp;&nbsp;Drag to ending position:&nbsp;&nbsp;<button class="button button2" draggable={true} onDragStart={() => { this.endNodePressed() }}><img src={endnode} width="40" height="30" /></button></b>
-
-
-            &nbsp;&nbsp;&nbsp;<Button variant="dark" onClick={() => { this.run() }}>Run</Button>
-            &nbsp;&nbsp;&nbsp;<Button variant="dark" onClick={() => { this.clearBoard() }}>Clear Board</Button>
-            &nbsp;&nbsp;&nbsp;<Button variant="dark" onClick={() => { this.changeScreen() }}>Sorting Algorithms</Button>
-
-            </div>
-                <br />
-
-            </div>
-        );
-    }
+      </NavDropdown>
+      
+      <NavDropdown title="Speed" id="basic-nav-dropdown">
+        <NavDropdown.Item href="#action/3.1">Slow</NavDropdown.Item>
+        <NavDropdown.Item href="#action/3.2">Medium</NavDropdown.Item>
+        <NavDropdown.Item href="#action/3.3">Fast</NavDropdown.Item>
+        <NavDropdown.Item href="#action/3.4">Ultra</NavDropdown.Item>
+        </NavDropdown>
+        Drag to starting position:
+        <button class="button button1" draggable={true} onDragStart={() => { this.startNodePressed() }} ><img src={startnode} width="30" height="30"></img></button>
+        Drag to ending position:
+        <button class="button button2" draggable={true} onDragStart={() => { this.endNodePressed() }}><img src={endnode} width="40" height="30" /></button>
+        <Button className="button3" variant="dark" onClick={() => { this.run() }}>Run</Button>
+        &nbsp;&nbsp;<Button className="button4" variant="dark" onClick={() => { this.clearBoard() }}>Clear Board</Button>
+        &nbsp;&nbsp;<Button className="button5" variant="dark" onClick={() => { this.changeScreen() }}>Sorting Algorithms</Button>
+    
+    
+    </Nav>
+  </Navbar.Collapse>
+</Navbar>
+    )
+    
 }
+};

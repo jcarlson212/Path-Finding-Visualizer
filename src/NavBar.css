@@ -9,11 +9,21 @@ a{
   color:white;
 }
 b{
-  font-size:15px;
+  font-size:20px;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   color:white;
 }
 
+.testing{
+  font-size:15px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color:black;
+}
+.testing2{
+  font-size:25px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color:white;
+}
   .button1{border-radius:50%;border:0;background:transparent}
   .button2{border-radius:50%;border:0;background:transparent}
     select{
@@ -128,7 +138,7 @@ background-color: green;
   .button5:hover{
     cursor: pointer;
     color: white;
-    background-color: blueviolet139, 0, 0);
+    background-color: blueviolet139, 0, 0;
   }
   .button5:active{
       background-color: blueviolet;
