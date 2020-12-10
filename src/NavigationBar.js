@@ -153,9 +153,9 @@ render()
       
       <NavDropdown title={this.state.speed} id="basic-nav-dropdown">
         <NavDropdown.Item onClick={ () => this.change_speed("Slow") }>Slow</NavDropdown.Item>
-        <NavDropdown.Item onClick={ () => this.change_algorithm("Medium") }>Medium</NavDropdown.Item>
-        <NavDropdown.Item onClick={ () => this.change_algorithm("Fast") }>Fast</NavDropdown.Item>
-        <NavDropdown.Item onClick={ () => this.change_algorithm("Ultra") }>Ultra</NavDropdown.Item>
+        <NavDropdown.Item onClick={ () => this.change_speed("Medium") }>Medium</NavDropdown.Item>
+        <NavDropdown.Item onClick={ () => this.change_speed("Fast") }>Fast</NavDropdown.Item>
+        <NavDropdown.Item onClick={ () => this.change_speed("Ultra") }>Ultra</NavDropdown.Item>
         </NavDropdown>
         Drag to starting position:
         <button class="button button1" draggable={true} onDragStart={() => { this.startNodePressed() }} ><img src={startnode} width="30" height="30"></img></button>

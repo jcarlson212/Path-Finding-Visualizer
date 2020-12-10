@@ -30,15 +30,12 @@ const black_grid_square = {
 
 const Green_grid_squareKeyFrames = keyframes`
     0% {
-        transform: scale(.3);
         background-color: silver;
-        border-radius: 100%;
     }
     50% {
         background-color: mint;
     }
     100% {
-        transform: scale(1);
         background-color: lime;
     }
 `;
@@ -222,14 +219,15 @@ export default class Cell extends React.Component {
                 }
                 else if (this.state.cellColor === 'black') {
                     return (
-                        <Black_grid_square
-                            onMouseEnter={() => this.changeColor(false)}
-                            onClick={() => this.changeColor(true)}
-                            onDrop={() => { this.handleDrop() }}
-                            onDragOver={(event) => this.onDragOver(event)}
-                            left={this.state.xCoord}
-                            top={this.state.yCoord}
-                        />
+                        <div style={
+                            {
+                                ...black_grid_square,
+                                left: this.state.xCoord,
+                                top: this.state.yCoord,
+                            }
+                        } onMouseEnter={() => this.changeColor(false)} onClick={() => this.changeColor(true)} onDrop={() => { this.handleDrop() }} onDragOver={(event) => this.onDragOver(event)}>
+
+                        </div>
                     )
                 }
             } else {
