@@ -39,7 +39,6 @@ export class NavigationBar extends React.Component{
     
     state = {
         isDragging: false,
-        screen: "search",
 
         originalX: 0,
         originalY: 0,
@@ -49,7 +48,7 @@ export class NavigationBar extends React.Component{
 
         lastTranslateX: 0,
         lastTranslateY: 0,
-        algorithm: "algorithm",
+        algorithm: "BFS",
         speed: "Medium",
     }
     componentDidMount(){
@@ -72,10 +71,7 @@ export class NavigationBar extends React.Component{
     }
 
     changeScreen = () => {
-        this.setState({
-          ...this.state,
-          screen: (this.state.screen === "search") ? "sort" : "search"
-        })
+        
       }
 
     startNodePressed = () => {
@@ -127,6 +123,18 @@ export class NavigationBar extends React.Component{
         }
     }
 
+    change_algorithm = (type) => {this.setState({
+        ...this.state,
+        algorithm: type
+    })}
+
+    change_speed = (new_speed) => {
+        this.setState({
+            ...this.state,
+            speed: new_speed
+        })
+    }
+
 render()
 {
     return(
@@ -135,19 +143,19 @@ render()
         <Navbar.Collapse id="basic-navbar-nav">
     <Nav className="testing">
     <Navbar.Brand className="testing2" href="#home">Path Finding Visualizer</Navbar.Brand>
-      <NavDropdown title="Algorithm" id="basic-nav-dropdown">
-        <NavDropdown.Item href="#action/3.1">A*</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.2">DFS action</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.3">BFS</NavDropdown.Item>
+      <NavDropdown title={this.state.algorithm} id="basic-nav-dropdown">
+        <NavDropdown.Item onClick={ () => this.change_algorithm("A*") }>A*</NavDropdown.Item>
+        <NavDropdown.Item onClick={ () => this.change_algorithm("DFS") }>DFS</NavDropdown.Item>
+        <NavDropdown.Item onClick={ () => this.change_algorithm("BFS") }>BFS</NavDropdown.Item>
     
 
       </NavDropdown>
       
-      <NavDropdown title="Speed" id="basic-nav-dropdown">
-        <NavDropdown.Item href="#action/3.1">Slow</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.2">Medium</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.3">Fast</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.4">Ultra</NavDropdown.Item>
+      <NavDropdown title={this.state.speed} id="basic-nav-dropdown">
+        <NavDropdown.Item onClick={ () => this.change_speed("Slow") }>Slow</NavDropdown.Item>
+        <NavDropdown.Item onClick={ () => this.change_algorithm("Medium") }>Medium</NavDropdown.Item>
+        <NavDropdown.Item onClick={ () => this.change_algorithm("Fast") }>Fast</NavDropdown.Item>
+        <NavDropdown.Item onClick={ () => this.change_algorithm("Ultra") }>Ultra</NavDropdown.Item>
         </NavDropdown>
         Drag to starting position:
         <button class="button button1" draggable={true} onDragStart={() => { this.startNodePressed() }} ><img src={startnode} width="30" height="30"></img></button>
