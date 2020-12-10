@@ -71,8 +71,8 @@ export class NavigationBar extends React.Component{
     }
 
     changeScreen = () => {
-        
-      }
+        this.props.change_screen();
+    }
 
     startNodePressed = () => {
         console.log("start node pressed")

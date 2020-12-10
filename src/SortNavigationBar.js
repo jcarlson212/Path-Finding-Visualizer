@@ -70,11 +70,8 @@ export default class SortNavigationBar extends React.Component {
     }
 
     backScreen = () => {
-        this.setState({
-          ...this.state,
-          screen: (this.state.screen === "sort") ? "sort" : "search"
-        })
-      }
+        this.props.change_screen();
+    }
 
     render() {
         return (

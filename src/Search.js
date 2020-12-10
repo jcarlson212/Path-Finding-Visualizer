@@ -90,7 +90,7 @@ class Search extends React.Component {
 
     return (
       <div style={{ height: '2600px' }}>
-        <NavigationBar  grid_map={this.state.grid_map_to_pass_down} nodePressed={ this.state.nodePressed } endPoints={this.state.endPointsForSearch}/>
+        <NavigationBar  grid_map={this.state.grid_map_to_pass_down} nodePressed={ this.state.nodePressed } endPoints={this.state.endPointsForSearch} change_screen={() => this.props.change_screen()}/>
         <div className="App" onMouseDown={() => { this.state.isMouseDown.mouseDown = true }} onMouseUp={() => { this.state.isMouseDown.mouseDown = false }} endPoints={this.state.endPointsForSearch}>
           {grid}
         </div>

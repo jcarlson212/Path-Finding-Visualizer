@@ -31,8 +31,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        {(this.state.screen === "search") ? <Search/> : <Sort/>}
-        <button onClick={() => this.changeScreen()}>Click me to change screen</button>
+        {(this.state.screen === "search") ? <Search change_screen={() => this.changeScreen() }/> : <Sort change_screen={() => this.changeScreen() }/>}
       </div>
     );
   }
