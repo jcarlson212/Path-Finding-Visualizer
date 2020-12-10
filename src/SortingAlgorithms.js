@@ -2,6 +2,8 @@ import { hashCoord } from './GridHelperFunctions';
 import { Queue, Stack, PriorityQueue } from './DataStructures';
 import { CELL_WIDTH } from './Cell';
 
+const VOLUME = .1;
+
 function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
@@ -12,6 +14,7 @@ function sleep(ms) {
 
 export const radixSortAlgorithm = async (refs, start, end, speed, largest_bit) => {
     const audio = new Audio("http://codeskulptor-demos.commondatastorage.googleapis.com/GalaxyInvaders/theme_01.mp3");
+    audio.volume = VOLUME;
     audio.play()
     audio.loop = true
 
@@ -64,6 +67,7 @@ export const mergeSortAlgorithm = async (refs, start, end, speed) => {
     let audio;
     if(start === 0 && end === Object.keys(refs).length - 1){
         audio = new Audio("http://codeskulptor-demos.commondatastorage.googleapis.com/GalaxyInvaders/theme_01.mp3");
+        audio.volume = VOLUME;
         audio.play()
         audio.loop = true
     }
@@ -131,6 +135,7 @@ export const quickSortAlgorithm = async (refs, start, end, speed) => {
     let audio;
     if(start === 0 && end === Object.keys(refs).length - 1){
         audio = new Audio("http://codeskulptor-demos.commondatastorage.googleapis.com/GalaxyInvaders/theme_01.mp3");
+        audio.volume = VOLUME;
         audio.play()
         audio.loop = true
     }
