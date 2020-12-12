@@ -1,7 +1,7 @@
 import React from 'react';
-import startnode from "./images/startnode.png";
-import endnode from "./images/endnode.png";
-import './App.css'; //styles
+import startnode from "../images/startnode.png";
+import endnode from "../images/endnode.png";
+import '../App.css'; //styles
 import styled, { keyframes } from 'styled-components';
 
 

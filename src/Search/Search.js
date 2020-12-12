@@ -1,9 +1,8 @@
 import React from 'react';
-import './App.css';
-import Cell, { CELL_WIDTH } from './Cell';
+import '../App.css';
+import Cell from './Cell';
 import { NavigationBar, NAVAGATION_BAR_HEIGHT } from './NavigationBar';
 import { hashCoord } from './GridHelperFunctions';
-import { breadthFirstSearch } from './SearchAlgorithms';
 
 export const CELLS_PER_ROW = 50;
 export const CELLS_PER_COL = 50;

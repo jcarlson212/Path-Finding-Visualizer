@@ -1,19 +1,15 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Button from 'react-bootstrap/Button';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Nav from 'react-bootstrap/Nav';
-import Form from 'react-bootstrap/Form';
-import FormControl from 'react-bootstrap/FormControl';
-import startnode from "./images/startnode.png";
-import endnode from "./images/endnode.png";
+import startnode from "../images/startnode.png";
+import endnode from "../images/endnode.png";
 import './NavBar.css';
-import { CELLS_PER_ROW, CELLS_PER_COL } from "./App";
+import { CELLS_PER_ROW, CELLS_PER_COL } from "../App";
 import { hashCoord } from "./GridHelperFunctions";
 import { breadthFirstSearch, AStarSearch, depthFirstSearch } from "./SearchAlgorithms";
-import { NORMAL, FAST, SLOW, ULTRA } from './Constants';
-import { CELL_WIDTH } from './Cell';
+import { NORMAL, FAST, SLOW, ULTRA } from '../Constants';
 
 
 
