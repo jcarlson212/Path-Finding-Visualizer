@@ -3,7 +3,7 @@ import '../App.css';
 import Cell from './Cell';
 import { NavigationBar } from './NavigationBar';
 import { hashCoord } from './GridHelperFunctions';
-import { CELLS_PER_COL, CELLS_PER_ROW, NAVIGATION_BAR_HEIGHT } from './Constants';
+import { CELLS_PER_COL, CELLS_PER_ROW, CELL_WIDTH, NAVIGATION_BAR_HEIGHT } from './Constants';
 
 class Search extends React.Component {
 
@@ -85,7 +85,7 @@ class Search extends React.Component {
     this.state.grid_map_to_pass_down.refs = this.state.grid_map
 
     return (
-      <div style={{ height: '2600px' }}>
+      <div style={{ height: (CELLS_PER_COL*CELL_WIDTH + NAVIGATION_BAR_HEIGHT) }}>
         <NavigationBar  grid_map={this.state.grid_map_to_pass_down} nodePressed={ this.state.nodePressed } endPoints={this.state.endPointsForSearch} change_screen={() => this.props.change_screen()}/>
         <div className="App" onMouseDown={() => { this.state.isMouseDown.mouseDown = true }} onMouseUp={() => { this.state.isMouseDown.mouseDown = false }} endPoints={this.state.endPointsForSearch}>
           {grid}
