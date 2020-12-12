@@ -1,9 +1,9 @@
 import React from 'react';
 import '../App.css';
 import Cell from './Cell';
-import { NavigationBar, NAVAGATION_BAR_HEIGHT } from './NavigationBar';
+import { NavigationBar } from './NavigationBar';
 import { hashCoord } from './GridHelperFunctions';
-import { CELLS_PER_COL, CELLS_PER_ROW } from './Constants';
+import { CELLS_PER_COL, CELLS_PER_ROW, NAVIGATION_BAR_HEIGHT } from './Constants';
 
 class Search extends React.Component {
 
@@ -42,7 +42,7 @@ class Search extends React.Component {
       for(let j =0; j < CELLS_PER_COL; ++j) {
         initial_cells.push({
           xCoord: 50*i,
-          yCoord: 50*j + NAVAGATION_BAR_HEIGHT,
+          yCoord: 50*j + NAVIGATION_BAR_HEIGHT,
         })
       }
     }
@@ -68,7 +68,6 @@ class Search extends React.Component {
 
   //renders a Navigation bar and a grid of cells.
   render() {
-    console.log("main render called")
     const grid = []
     let grid_map = {} //this is used for bfs/dfs/search algorithms
     let i = 0

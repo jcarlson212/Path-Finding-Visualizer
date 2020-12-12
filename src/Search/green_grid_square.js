@@ -1,6 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-
-const CELL_WIDTH = 50;
+import { CELL_WIDTH } from './Constants';
 
 const green_grid_squareKeyFrames = keyframes`
 0% {
