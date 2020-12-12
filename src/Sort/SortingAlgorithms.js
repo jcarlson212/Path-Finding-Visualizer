@@ -1,5 +1,4 @@
-
-const VOLUME = .1;
+import { VOLUME } from './Constants';
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
@@ -9,12 +8,13 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+//The refs are used to sort between and should hold sticks. The largest bit is the largest
+//bit of the heights of the sticks in their binary expansion
 export const radixSortAlgorithm = async (refs, start, end, speed, largest_bit) => {
     const audio = new Audio("http://codeskulptor-demos.commondatastorage.googleapis.com/GalaxyInvaders/theme_01.mp3");
     audio.volume = VOLUME;
     audio.play()
     audio.loop = true
-
 
     let buckets = {
         '0': [],
@@ -166,7 +166,6 @@ export const quickSortAlgorithm = async (refs, start, end, speed) => {
         }
     }
     //SortingAlgorithms.js:167 0 499 135 364 130
-    console.log(start, end, left_bucket.length, right_bucket.length, pivot_index)
     for(let i = start; i <= start + left_bucket.length-1; i++){
         refs[i].changeHeight(left_bucket[i-start])
         refs[i].changeColor("red")

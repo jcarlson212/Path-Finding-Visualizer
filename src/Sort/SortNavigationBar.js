@@ -1,10 +1,7 @@
 import React from 'react';
 import { mergeSortAlgorithm, radixSortAlgorithm, quickSortAlgorithm } from './SortingAlgorithms'
 import './NavBarSort.css';
-
-export const SORT_NAVIGATION_BAR_HEIGHT = 100;
-
-
+import { SORT_NAVIGATION_BAR_HEIGHT } from './Constants';
 
 export default class SortNavigationBar extends React.Component {
 

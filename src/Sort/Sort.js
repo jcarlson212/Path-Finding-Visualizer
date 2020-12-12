@@ -1,10 +1,10 @@
 import React from 'react';
 import Stick from './Stick';
-import SortNavigationBar, { SORT_NAVIGATION_BAR_HEIGHT } from './SortNavigationBar';
+import SortNavigationBar from './SortNavigationBar';
+import { NUMBER_OF_STICKS, MAX_STICK_HEIGHT, SORT_NAVIGATION_BAR_HEIGHT } from './Constants';
 
-const NUMBER_OF_STICKS = 500;
-const MAX_STICK_HEIGHT = 800;
-
+//Sorting algorithm screen component
+//Loads sticks with random height and navigation bar
 class Sort extends React.Component {
 
     state = {
@@ -14,8 +14,7 @@ class Sort extends React.Component {
         
     }
 
-    constructor() {
-        super()
+    generate_sticks = () => {
         for(let i =0; i < NUMBER_OF_STICKS; ++i){
             const p = i;
             this.state.sticks.push({
@@ -28,11 +27,14 @@ class Sort extends React.Component {
         }
     }
 
-    componentDidMount() {
-        this.state.refs = this.refs
-        console.log(this.refs)
+    constructor() {
+        super()
+        this.generate_sticks()
     }
 
+    componentDidMount() {
+        this.state.refs = this.refs
+    }
 
     render() {
         return (
@@ -45,7 +47,6 @@ class Sort extends React.Component {
             
         )
     }
-
 }
 
 export default Sort;
