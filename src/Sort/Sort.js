@@ -1,7 +1,7 @@
 import React from 'react';
 import Stick from './Stick';
 import SortNavigationBar, { SORT_NAVIGATION_BAR_HEIGHT } from './SortNavigationBar';
-import { hashCoord } from './GridHelperFunctions';
+import { hashCoord } from '../GridHelperFunctions';
 
 const NUMBER_OF_STICKS = 500;
 const MAX_STICK_HEIGHT = 800;
