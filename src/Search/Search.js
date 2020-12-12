@@ -3,9 +3,7 @@ import '../App.css';
 import Cell from './Cell';
 import { NavigationBar, NAVAGATION_BAR_HEIGHT } from './NavigationBar';
 import { hashCoord } from './GridHelperFunctions';
-
-export const CELLS_PER_ROW = 50;
-export const CELLS_PER_COL = 50;
+import { CELLS_PER_COL, CELLS_PER_ROW } from './Constants';
 
 class Search extends React.Component {
 

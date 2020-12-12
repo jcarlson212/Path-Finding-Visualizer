@@ -3,9 +3,7 @@ import startnode from "../images/startnode.png";
 import endnode from "../images/endnode.png";
 import '../App.css'; //styles
 import styled, { keyframes } from 'styled-components';
-
-
-export const CELL_WIDTH = 50;
+import { CELL_WIDTH } from './Constants';
 
 
 const white_grid_square = {
@@ -84,14 +82,6 @@ const Black_grid_square = styled.div`
     top: ${props => props.top}px;
 `;
 
-
-/*
-onmouseenter: ${props => props.handleMouseEnter}
-    onclick: ${props => props.handleOnClick};
-    ondrop: ${props => props.handleOnDrop};
-    ondragover: ${props => props.handleOnDragOver};
-*/
-
 export default class Cell extends React.Component {
 
     state = {
@@ -149,8 +139,6 @@ export default class Cell extends React.Component {
 
     //helps create a start or end node when a start / end node is dropped onto this cell
     handleDrop = () => {
-        console.log("dropped")
-        console.log(this.props.endNodes)
         if (this.props.nodePressed.start_pressed) {
             this.props.endNodes.startNode = [this.state.xCoord, this.state.yCoord]
             this.setState({
@@ -188,93 +176,98 @@ export default class Cell extends React.Component {
         }
     }
 
+    create_start_node = () => (
+        <div
+            style={
+                {
+                    ...white_grid_square,
+                    left: this.state.xCoord,
+                    top: this.state.yCoord,
+                }
+            }
+            onMouseEnter={() => this.changeColor(false)}
+            onClick={() => this.changeColor(true)}
+            onDrop={() => { this.handleDrop() }}
+            onDragOver={(event) => this.onDragOver(event)}
+
+        >
+            <img src={startnode} width={CELL_WIDTH} height={CELL_WIDTH} alt="Start"></img>
+        </div>
+    );
+
+    create_end_node = () => (
+        <div
+            style={
+                {
+                    ...white_grid_square,
+                    left: this.state.xCoord,
+                    top: this.state.yCoord,
+                }
+            }
+            onMouseEnter={() => this.changeColor(false)}
+            onClick={() => this.changeColor(true)}
+            onDrop={() => { this.handleDrop() }}
+            onDragOver={(event) => this.onDragOver(event)}
+
+        >
+            <img src={endnode} width={CELL_WIDTH} height={CELL_WIDTH} alt="End"></img>
+        </div>
+    )
+
+    create_white_node = () => (
+        <div style={
+            {
+                ...white_grid_square,
+                left: this.state.xCoord,
+                top: this.state.yCoord,
+            }
+        } onMouseEnter={() => this.changeColor(false)} onClick={() => this.changeColor(true)} onDrop={() => { this.handleDrop() }} onDragOver={(event) => this.onDragOver(event)}>
+
+        </div>
+    )
+
+    create_green_node = () => (
+        <Green_grid_square
+            onMouseEnter={() => this.changeColor(false)}
+            onClick={() => this.changeColor(true)}
+            onDrop={() => { this.handleDrop() }}
+            onDragOver={(event) => this.onDragOver(event)}
+            left={this.state.xCoord}
+            top={this.state.yCoord}
+        />
+    )
+
+    create_black_node = () => (
+        <div style={
+            {
+                ...black_grid_square,
+                left: this.state.xCoord,
+                top: this.state.yCoord,
+            }
+        } onMouseEnter={() => this.changeColor(false)} onClick={() => this.changeColor(true)} onDrop={() => { this.handleDrop() }} onDragOver={(event) => this.onDragOver(event)}>
+
+        </div>
+    )
+    
+
     //renders a cell based on if it is a start node, end node, and its color.
-    render() {
+    render = () => {
         if (!this.state.isStartNode) {
             if (!this.state.isEndNode) {
                 if (this.state.cellColor === 'white') {
-                    return (
-                        <div style={
-                            {
-                                ...white_grid_square,
-                                left: this.state.xCoord,
-                                top: this.state.yCoord,
-                            }
-                        } onMouseEnter={() => this.changeColor(false)} onClick={() => this.changeColor(true)} onDrop={() => { this.handleDrop() }} onDragOver={(event) => this.onDragOver(event)}>
-
-                        </div>
-                    )
-                }
-                else if (this.state.cellColor === 'green') {
-                    return (
-                        <Green_grid_square
-                            onMouseEnter={() => this.changeColor(false)}
-                            onClick={() => this.changeColor(true)}
-                            onDrop={() => { this.handleDrop() }}
-                            onDragOver={(event) => this.onDragOver(event)}
-                            left={this.state.xCoord}
-                            top={this.state.yCoord}
-                        />
-                    )
-                }
-                else if (this.state.cellColor === 'black') {
-                    return (
-                        <div style={
-                            {
-                                ...black_grid_square,
-                                left: this.state.xCoord,
-                                top: this.state.yCoord,
-                            }
-                        } onMouseEnter={() => this.changeColor(false)} onClick={() => this.changeColor(true)} onDrop={() => { this.handleDrop() }} onDragOver={(event) => this.onDragOver(event)}>
-
-                        </div>
-                    )
+                    return this.create_white_node();
+                } else if (this.state.cellColor === 'green') {
+                    return this.create_green_node();
+                } else if (this.state.cellColor === 'black') {
+                    return this.create_black_node();
                 }
             } else {
                 //is end node
-                return (
-                    <div
-                        style={
-                            {
-                                ...white_grid_square,
-                                left: this.state.xCoord,
-                                top: this.state.yCoord,
-                            }
-                        }
-                        onMouseEnter={() => this.changeColor(false)}
-                        onClick={() => this.changeColor(true)}
-                        onDrop={() => { this.handleDrop() }}
-                        onDragOver={(event) => this.onDragOver(event)}
-
-                    >
-                        <img src={endnode} width={CELL_WIDTH} height={CELL_WIDTH} alt="End"></img>
-                    </div>
-                )
+                return this.create_end_node();
             }
+        }else {
+            //is a start node cell
+            return this.create_start_node();
         }
-
-
-        else {
-            //is start node
-            return (
-                <div
-                    style={
-                        {
-                            ...white_grid_square,
-                            left: this.state.xCoord,
-                            top: this.state.yCoord,
-                        }
-                    }
-                    onMouseEnter={() => this.changeColor(false)}
-                    onClick={() => this.changeColor(true)}
-                    onDrop={() => { this.handleDrop() }}
-                    onDragOver={(event) => this.onDragOver(event)}
-
-                >
-                    <img src={startnode} width={CELL_WIDTH} height={CELL_WIDTH} alt="Start"></img>
-                </div>
-            )
-        }
-
     }
 }
