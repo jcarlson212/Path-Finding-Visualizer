@@ -39,7 +39,7 @@ class Sort extends React.Component {
     render() {
         return (
             <div>
-                <SortNavigationBar hello={2} parent={() => this} change_screen={() => this.props.change_screen()} />
+                <SortNavigationBar parent={() => this} change_screen={() => this.props.change_screen()} />
                 <div style={{height: MAX_STICK_HEIGHT, display: "flex"}}>
                     {this.state.sticks.map((stick, index) => <Stick color={stick.color} height={stick.height} width={stick.width} xPosition={stick.xPosition} yPosition={stick.yPosition} ref={index.toString()} key={index} />)}
                 </div>

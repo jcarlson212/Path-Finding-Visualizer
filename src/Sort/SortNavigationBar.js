@@ -16,8 +16,6 @@ export default class SortNavigationBar extends React.Component {
     }
 
     componentDidMount = () => {
-        console.log(this.props)
-        console.log(this.props.parent())
         this.state.parentRef = this.props.parent()
     }
 
@@ -36,17 +34,7 @@ export default class SortNavigationBar extends React.Component {
         quickSortAlgorithm(refs, 0, Object.keys(refs).length - 1, 0)
     }
 
-
-    /*          <div style={{ marginLeft: 5, margingRight: 5 }}>
-  <button onClick={() => { this.mergeSort() }}>
-      MergeSort
-                  </button>
-</div>
-  */
-
     beginSort = () => {
-        console.log(this.state.sort)
-
         if (this.state.sort === "Merge Sort") {
             console.log("state is merge")
             //state is merge
@@ -63,10 +51,9 @@ export default class SortNavigationBar extends React.Component {
             //state is quick
             this.quickSort()
         }
-
     }
 
-    backScreen = () => {
+    switch_screen = () => {
         this.props.change_screen();
     }
 
@@ -112,7 +99,7 @@ export default class SortNavigationBar extends React.Component {
                     </select>
 
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="button beginSort" onClick={() => { this.beginSort() }}>Begin Sort</button>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="button backScreen" onClick={() => { this.backScreen() }}>Sorting Algorithms</button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="button backScreen" onClick={() => { this.switch_screen() }}>Sorting Algorithms</button>
 
                 </div>
                 <br />
