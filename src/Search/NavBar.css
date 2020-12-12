@@ -24,7 +24,7 @@ b{
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   color:white;
 }
-  .button1{border-radius:50%;border:0;background:transparent}
+  .button1{border-radius:50%;border:0;background:transparent; margin-left: 15px; margin-right: 15px }
   .button2{border-radius:50%;border:0;background:transparent}
     select{
     background:transparent;

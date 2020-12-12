@@ -1,4 +1,4 @@
-export const NAVIGATION_BAR_HEIGHT = 100;
+export const NAVIGATION_BAR_HEIGHT = 70;
 export const CELL_WIDTH = 50;
 export const CELLS_PER_ROW = 35;
 export const CELLS_PER_COL = 35;

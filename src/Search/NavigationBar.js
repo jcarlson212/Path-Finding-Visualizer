@@ -1,6 +1,8 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Navbar from 'react-bootstrap/Navbar';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Nav from 'react-bootstrap/Nav';
 import startnode from "../images/startnode.png";
@@ -130,13 +132,31 @@ export class NavigationBar extends React.Component{
                             <NavDropdown.Item onClick={ () => this.change_speed("Fast") }>Fast</NavDropdown.Item>
                             <NavDropdown.Item onClick={ () => this.change_speed("Ultra") }>Ultra</NavDropdown.Item>
                         </NavDropdown>
-                        Drag to starting position:
-                        <button class="button button1" draggable={true} onDragStart={() => { this.startNodePressed() }} ><img src={startnode} width="30" height="30"></img></button>
-                        Drag to ending position:
-                        <button class="button button2" draggable={true} onDragStart={() => { this.endNodePressed() }}><img src={endnode} width="40" height="30" /></button>
-                        <Button className="button3" variant="dark" onClick={() => { this.run() }}>Run</Button>
-                        &nbsp;&nbsp;<Button className="button4" variant="dark" onClick={() => { this.clearBoard() }}>Clear Board</Button>
-                        &nbsp;&nbsp;<Button className="button5" variant="dark" onClick={() => { this.changeScreen() }}>Sorting Algorithms</Button>
+                        <OverlayTrigger
+                            key={0}
+                            placement='bottom'
+                            overlay={
+                                <Tooltip id={`start`}>
+                                Drag to starting position
+                                </Tooltip>
+                            }
+                        >
+                            <button class="button button1" draggable={true} onDragStart={() => { this.startNodePressed() }} ><img src={startnode} width="30" height="30"></img></button>
+                        </OverlayTrigger>
+                        <OverlayTrigger
+                            key={1}
+                            placement={'bottom'}
+                            overlay={
+                                <Tooltip id={`end`}>
+                                Drag to ending position
+                                </Tooltip>
+                            }
+                        >
+                            <button class="button button2" draggable={true} onDragStart={() => { this.endNodePressed() }}><img src={endnode} width="40" height="30" /></button>
+                        </OverlayTrigger>
+                        <Button style={{ marginLeft: 15, marginRight: 15 }} variant="dark" onClick={() => { this.run() }}>Run</Button>
+                        &nbsp;&nbsp;<Button style={{ marginLeft: 15, marginRight: 15 }} variant="dark" onClick={() => { this.clearBoard() }}>Clear Board</Button>
+                        &nbsp;&nbsp;<Button style={{ marginLeft: 15, marginRight: 15 }} variant="dark" onClick={() => { this.changeScreen() }}>Sorting Algorithms</Button>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

@@ -99,7 +99,7 @@ export default class SortNavigationBar extends React.Component {
                     </select>
 
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="button beginSort" onClick={() => { this.beginSort() }}>Begin Sort</button>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="button backScreen" onClick={() => { this.switch_screen() }}>Sorting Algorithms</button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="button backScreen" onClick={() => { this.switch_screen() }}>Search Algorithms</button>
 
                 </div>
                 <br />
