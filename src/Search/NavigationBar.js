@@ -119,14 +119,14 @@ export class NavigationBar extends React.Component{
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="testing">
-                        <Navbar.Brand className="testing2" href="#home">Path Finding Visualizer</Navbar.Brand>
-                        <NavDropdown style={{ width: 100, marginLeft: 15, marginRight: 15 }} title={this.state.algorithm} id="basic-nav-dropdown">
+                        <Navbar.Brand className="testing2">Path Finding Visualizer</Navbar.Brand>
+                        <NavDropdown style={{ width: 100, marginLeft: 10, marginRight: 10 }} title={this.state.algorithm} id="basic-nav-dropdown">
                             <NavDropdown.Item onClick={ () => this.change_algorithm("A*") }>A*</NavDropdown.Item>
                             <NavDropdown.Item onClick={ () => this.change_algorithm("DFS") }>DFS</NavDropdown.Item>
                             <NavDropdown.Item onClick={ () => this.change_algorithm("BFS") }>BFS</NavDropdown.Item>
                         </NavDropdown>
                         
-                        <NavDropdown style={{ width: 100, marginLeft: 15, marginRight: 15 }} title={this.state.speed} id="basic-nav-dropdown">
+                        <NavDropdown style={{ width: 100, marginLeft: 10, marginRight: 50 }} title={this.state.speed} id="basic-nav-dropdown">
                             <NavDropdown.Item onClick={ () => this.change_speed("Slow") }>Slow</NavDropdown.Item>
                             <NavDropdown.Item onClick={ () => this.change_speed("Medium") }>Medium</NavDropdown.Item>
                             <NavDropdown.Item onClick={ () => this.change_speed("Fast") }>Fast</NavDropdown.Item>

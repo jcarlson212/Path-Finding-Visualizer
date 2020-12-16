@@ -1,4 +1,10 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button';
+import Navbar from 'react-bootstrap/Navbar';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import Nav from 'react-bootstrap/Nav';
 import { mergeSortAlgorithm, radixSortAlgorithm, quickSortAlgorithm } from './SortingAlgorithms'
 import './NavBarSort.css';
 import { SORT_NAVIGATION_BAR_HEIGHT } from './Constants';
@@ -33,7 +39,18 @@ export default class SortNavigationBar extends React.Component {
         const refs = this.state.parentRef.refs
         quickSortAlgorithm(refs, 0, Object.keys(refs).length - 1, 0)
     }
-
+    change_sort_algorithm = (type) => {
+        this.setState({
+            ...this.state,
+            algorithm: type
+        })
+    }
+    change_sort_speed = (new_speed) => {
+        this.setState({
+            ...this.state,
+            speed: new_speed
+        })
+    }
     beginSort = () => {
         if (this.state.sort === "Merge Sort") {
             console.log("state is merge")
@@ -59,52 +76,31 @@ export default class SortNavigationBar extends React.Component {
 
     render() {
         return (
-            <div style={{
-                height: SORT_NAVIGATION_BAR_HEIGHT,
-                display: "flex",
-                backgroundColor: "rgb(23,213,213)",
-                flexDirection: "row",
-                alignItems: "center"
-            }}>
-                <div style={{ marginLeft: 5, margingRight: 5 }}>
-                    <a>
-                        Sorting Algorithms
-                    </a>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <select value={this.state.sort} onChange={(event) => {
-                        this.setState({
-                            ...this.sort,
-                            sort: event.target.value
-                        })
-                    }}>
-                        <option disabled selected style="Select Algo" style={{ color: "black" }}>Select Algo</option>
-                        <option value="Merge Sort" style={{ color: "black" }}>Merge Sort</option>
-                        <option value="Bubble Sort" style={{ color: "black" }}>Bubble Sort</option>
-                        <option value="Radix Sort" style={{ color: "black" }}>Radix Sort</option>
-                        <option value="Quick Sort" style={{ color: "black" }}>Quick Sort</option>
-                    </select>
-
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <select value={this.state.sortSpeed} onChange={(event) => {
-                        this.setState({
-                            ...this.state,
-                            sortSpeed: event.target.value
-                        })
-                    }}>
-                        <option disabled selected style="Speed" style={{ color: "black" }}>Speed</option>
-                        <option value="Slow" style={{ color: "black" }}>Slow</option>
-                        <option value="Medium" style={{ color: "black" }}>Medium</option>
-                        <option value="Fast" style={{ color: "black" }}>Fast</option>
-                        <option value="Ultra" style={{ color: "black" }}>Ultra</option>
-                    </select>
-
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="button beginSort" onClick={() => { this.beginSort() }}>Begin Sort</button>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="button backScreen" onClick={() => { this.switch_screen() }}>Search Algorithms</button>
-
-                </div>
-                <br />
-
-            </div>
+            <Navbar bg="light" expand="lg">
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="testing">
+                        <Navbar.Brand className="testing3">Sorting Algorithms</Navbar.Brand>
+                        <NavDropdown style={{ width: 100, marginLeft: 5, marginRight: 50 }} title={this.state.sort} id="basic-nav-dropdown">
+                            <NavDropdown.Item onClick={ () => this.change_sort_algorithm("Merge Sort") }>Merge Sort</NavDropdown.Item>
+                            <NavDropdown.Item onClick={ () => this.change_sort_algorithm("Bubble Sort") }>Bubble Sort</NavDropdown.Item>
+                            <NavDropdown.Item onClick={ () => this.change_sort_algorithm("Radix Sort") }>Radix Sort</NavDropdown.Item>
+                            <NavDropdown.Item onClick={ () => this.change_sort_algorithm("Quick Sort") }>Quick Sort</NavDropdown.Item>
+                        </NavDropdown>
+                        
+                        <NavDropdown style={{ width: 100, marginLeft: 50, marginRight: 15 }} title={this.state.sortSpeed} id="basic-nav-dropdown">
+                            <NavDropdown.Item onClick={ () => this.change_sort_speed("Slow") }>Slow</NavDropdown.Item>
+                            <NavDropdown.Item onClick={ () => this.change_sort_speed("Medium") }>Medium</NavDropdown.Item>
+                            <NavDropdown.Item onClick={ () => this.change_sort_speed("Fast") }>Fast</NavDropdown.Item>
+                            <NavDropdown.Item onClick={ () => this.change_sort_speed("Ultra") }>Ultra</NavDropdown.Item>
+                        </NavDropdown>
+                        
+                        <Button style={{ marginLeft: 15, marginRight: 15 }} variant="dark" onClick={() => { this.beginSort() }}>Sort</Button>
+                        <Button style={{ marginLeft: 15, marginRight: 15 }} variant="dark" onClick={() => { this.switch_screen() }}>Search Algorithms</Button>
+                    </Nav>
+                </Navbar.Collapse>
+            </Navbar>
+            
         );
     }
 }
