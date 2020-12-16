@@ -120,13 +120,13 @@ export class NavigationBar extends React.Component{
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="testing">
                         <Navbar.Brand className="testing2">Path Finding Visualizer</Navbar.Brand>
-                        <NavDropdown style={{ width: 100, marginLeft: 10, marginRight: 10 }} title={this.state.algorithm} id="basic-nav-dropdown">
+                        <NavDropdown style={{ width: 100, marginLeft: 5, marginRight: 5 }} title={this.state.algorithm} id="basic-nav-dropdown">
                             <NavDropdown.Item onClick={ () => this.change_algorithm("A*") }>A*</NavDropdown.Item>
                             <NavDropdown.Item onClick={ () => this.change_algorithm("DFS") }>DFS</NavDropdown.Item>
                             <NavDropdown.Item onClick={ () => this.change_algorithm("BFS") }>BFS</NavDropdown.Item>
                         </NavDropdown>
                         
-                        <NavDropdown style={{ width: 100, marginLeft: 10, marginRight: 50 }} title={this.state.speed} id="basic-nav-dropdown">
+                        <NavDropdown style={{ width: 100, marginLeft: 5, marginRight: 5 }} title={this.state.speed} id="basic-nav-dropdown">
                             <NavDropdown.Item onClick={ () => this.change_speed("Slow") }>Slow</NavDropdown.Item>
                             <NavDropdown.Item onClick={ () => this.change_speed("Medium") }>Medium</NavDropdown.Item>
                             <NavDropdown.Item onClick={ () => this.change_speed("Fast") }>Fast</NavDropdown.Item>
@@ -154,9 +154,9 @@ export class NavigationBar extends React.Component{
                         >
                             <button class="button button2" draggable={true} onDragStart={() => { this.endNodePressed() }}><img src={endnode} width="40" height="30" /></button>
                         </OverlayTrigger>
-                        <Button style={{ marginLeft: 15, marginRight: 15 }} variant="dark" onClick={() => { this.run() }}>Run</Button>
-                        &nbsp;&nbsp;<Button style={{ marginLeft: 15, marginRight: 15 }} variant="dark" onClick={() => { this.clearBoard() }}>Clear Board</Button>
-                        &nbsp;&nbsp;<Button style={{ marginLeft: 15, marginRight: 15 }} variant="dark" onClick={() => { this.changeScreen() }}>Sorting Algorithms</Button>
+                        <Button style={{ marginLeft: 10, marginRight: 10 }} variant="dark" onClick={() => { this.run() }}>Run</Button>
+                        &nbsp;&nbsp;<Button style={{ marginLeft: 10, marginRight: 10 }} variant="dark" onClick={() => { this.clearBoard() }}>Clear Board</Button>
+                        &nbsp;&nbsp;<Button style={{ marginLeft: 10, marginRight: 10 }} variant="dark" onClick={() => { this.changeScreen() }}>Sorting Algorithms</Button>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

@@ -39,16 +39,16 @@ export default class SortNavigationBar extends React.Component {
         const refs = this.state.parentRef.refs
         quickSortAlgorithm(refs, 0, Object.keys(refs).length - 1, 0)
     }
-    change_sort_algorithm = (type) => {
+    change_sort_algorithm = (sorty) => {
         this.setState({
             ...this.state,
-            algorithm: type
+            sort: sorty
         })
     }
-    change_sort_speed = (new_speed) => {
+    change_sort_speed = (speedy) => {
         this.setState({
             ...this.state,
-            speed: new_speed
+            sortSpeed: speedy
         })
     }
     beginSort = () => {
@@ -81,22 +81,22 @@ export default class SortNavigationBar extends React.Component {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="testing">
                         <Navbar.Brand className="testing3">Sorting Algorithms</Navbar.Brand>
-                        <NavDropdown style={{ width: 100, marginLeft: 5, marginRight: 50 }} title={this.state.sort} id="basic-nav-dropdown">
+                        <NavDropdown className="testing4" style={{ width: 100, marginLeft: 5, marginRight: 15 }} title={this.state.sort} id="basic-nav-dropdown">
                             <NavDropdown.Item onClick={ () => this.change_sort_algorithm("Merge Sort") }>Merge Sort</NavDropdown.Item>
                             <NavDropdown.Item onClick={ () => this.change_sort_algorithm("Bubble Sort") }>Bubble Sort</NavDropdown.Item>
                             <NavDropdown.Item onClick={ () => this.change_sort_algorithm("Radix Sort") }>Radix Sort</NavDropdown.Item>
                             <NavDropdown.Item onClick={ () => this.change_sort_algorithm("Quick Sort") }>Quick Sort</NavDropdown.Item>
                         </NavDropdown>
                         
-                        <NavDropdown style={{ width: 100, marginLeft: 50, marginRight: 15 }} title={this.state.sortSpeed} id="basic-nav-dropdown">
+                        <NavDropdown className="testing5" style={{ width: 100, marginLeft: 15, marginRight: 5 }} title={this.state.sortSpeed} id="basic-nav-dropdown">
                             <NavDropdown.Item onClick={ () => this.change_sort_speed("Slow") }>Slow</NavDropdown.Item>
                             <NavDropdown.Item onClick={ () => this.change_sort_speed("Medium") }>Medium</NavDropdown.Item>
                             <NavDropdown.Item onClick={ () => this.change_sort_speed("Fast") }>Fast</NavDropdown.Item>
                             <NavDropdown.Item onClick={ () => this.change_sort_speed("Ultra") }>Ultra</NavDropdown.Item>
                         </NavDropdown>
                         
-                        <Button style={{ marginLeft: 15, marginRight: 15 }} variant="dark" onClick={() => { this.beginSort() }}>Sort</Button>
-                        <Button style={{ marginLeft: 15, marginRight: 15 }} variant="dark" onClick={() => { this.switch_screen() }}>Search Algorithms</Button>
+                        <Button style={{ marginLeft: 10, marginRight: 10 }} variant="dark" onClick={() => { this.beginSort() }}>Sort</Button>
+                        <Button style={{ marginLeft: 10, marginRight: 10 }} variant="dark" onClick={() => { this.switch_screen() }}>Search Algorithms</Button>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
