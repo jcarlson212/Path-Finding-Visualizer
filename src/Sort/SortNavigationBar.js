@@ -5,7 +5,7 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Nav from 'react-bootstrap/Nav';
-import { mergeSortAlgorithm, radixSortAlgorithm, quickSortAlgorithm } from './SortingAlgorithms'
+import { mergeSortAlgorithm, radixSortAlgorithm, quickSortAlgorithm, bubbleSortAlgo } from './SortingAlgorithms'
 import './NavBarSort.css';
 import { SORT_NAVIGATION_BAR_HEIGHT } from './Constants';
 
@@ -29,7 +29,10 @@ export default class SortNavigationBar extends React.Component {
         const refs = this.state.parentRef.refs
         mergeSortAlgorithm(refs, 0, Object.keys(refs).length - 1, 0)
     }
-
+    bubbleSort = () => {
+        const refs = this.state.parentRef.refs
+        bubbleSortAlgo(refs, 0, Object.keys(refs).length-1, 0)
+    }
     radixSort = () => {
         const refs = this.state.parentRef.refs
         radixSortAlgorithm(refs, 0, Object.keys(refs).length - 1, 0, 9)
@@ -59,7 +62,7 @@ export default class SortNavigationBar extends React.Component {
         }
         else if (this.state.sort === "Bubble Sort") {
             console.log("state is bubbly")
-            //state is bubble
+            this.bubbleSort()
         }else if (this.state.sort === "Radix Sort"){
             this.radixSort()
         }

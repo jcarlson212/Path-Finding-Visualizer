@@ -196,37 +196,29 @@ export const quickSortAlgorithm = async (refs, start, end, speed) => {
     }
 }
 
-/*
-export const bubbleSortAlgo = async (z, zz) => {
-    if (z === zz) {
-        return;
-    }
-    else if (z === (zz - 1)) {
-        //????
-    }
-}
 
-//basic bubble sort todo: change heights
+const bubbleSort = async (refs, i, j, speed) => {
+    
+    let temp = refs[i].state.height;
+    refs[i].changeHeight(refs[j].state.height);
+    refs[j].changeHeight(temp);
+    await sleep(speed);
 
-const bubble = async (swap) => {
-    let initial = arrayTest => {
-        let arrayTestSize = arrayTest.length;
-        let swap;
-        do {
-            swap = false;
-            for (let i = 0; i < arrayTestSize; i++) 
-            {
-                if (arrayTest[i] > arrayTest[i + 1]) 
-                {
-                    let tempArray = arrayTest[i];
-                    arrayTest[i] = arrayTest[i + 1];
-                    arrayTest[i + 1] = tempArray;
-                    swap = true;
-                }
-            }
-        }
-        while (swap);
-        return arrayTest;
-    }
-}
-*/
+};
+export const bubbleSortAlgo = async (refs, start, end, speed) => {
+    let audio; //audio
+    audio = new Audio("http://codeskulptor-demos.commondatastorage.googleapis.com/GalaxyInvaders/theme_01.mp3");
+    audio.volume = VOLUME;
+    audio.play()
+    audio.loop = true
+       
+       for (let i = start; i <= end; i++)
+       {
+           for (let j = start+1; j <= end; j++)
+               if(refs[j-1].state.height > refs[j].state.height)
+                   {
+                       await bubbleSort(refs, j - 1, j, speed);
+                   }
+       }
+       audio.pause()//stop
+    };
